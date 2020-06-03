@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <world>
-    <name>unviers</name>
-    <logo>str1234</logo>
+    <name>God simulator</name>
+    <logo>http://localhost:8080/icones/jesus.jpg</logo>
     <money>0</money>
     <score>0</score>
     <totalangels>0</totalangels>
@@ -11,8 +11,8 @@
     <products>
         <product>
             <id>1</id>
-            <name>planet</name>
-            <logo>str1234</logo>
+            <name>Planète</name>
+            <logo>http://localhost:8080/icones/planete.jpg</logo>
             <cout>4.00</cout>
             <croissance>1.07</croissance>
             <revenu>1.00</revenu>
@@ -22,7 +22,7 @@
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
-                    <name>planetUnlock</name>
+                    <name>planeteUnlock</name>
                     <logo>str1234</logo>
                     <seuil>25</seuil>
                     <idcible>1</idcible>
@@ -34,8 +34,8 @@
         </product>
         <product>
             <id>2</id>
-            <name>soleil</name>
-            <logo>str1234</logo>
+            <name>Soleil</name>
+            <logo>http://localhost:8080/icones/sun.jpg</logo>
             <cout>69.00</cout>
             <croissance>1.15</croissance>
             <revenu>60</revenu>
@@ -55,8 +55,100 @@
                 </pallier>
             </palliers>
         </product>
+        <product>
+            <id>3</id>
+            <name>Système solaire</name>
+            <logo>http://localhost:8080/icones/solar-system.jpg</logo>
+            <cout>720.00</cout>
+            <croissance>1.14</croissance>
+            <revenu>540</revenu>
+            <vitesse>6000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>60000</timeleft>
+            <managerUnlocked>false</managerUnlocked>
+            <palliers>
+                <pallier>
+                    <name>systemeUnlock</name>
+                    <logo>str1234</logo>
+                    <seuil>25</seuil>
+                    <idcible>3</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+            </palliers>
+		<products>
+		<product>
+            <id>4</id>
+            <name>Galaxie</name>
+            <logo>http://localhost:8080/icones/galaxie.jpg</logo>
+            <cout>8640.00</cout>
+            <croissance>1.13</croissance>
+            <revenu>4320.00</revenu>
+            <vitesse>12000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>12000</timeleft>
+            <managerUnlocked>false</managerUnlocked>
+            <palliers>
+                <pallier>
+                    <name>galaxieUnlock</name>
+                    <logo>str1234</logo>
+                    <seuil>25</seuil>
+                    <idcible>4</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+            </palliers>
+        </product>
+		<product>
+            <id>5</id>
+            <name>Trou Noir</name>
+            <logo>http://localhost:8080/icones/black-hole.jpg</logo>
+            <cout>103680.00</cout>
+            <croissance>1.12</croissance>
+            <revenu>51840.00</revenu>
+            <vitesse>24000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>24000</timeleft>
+            <managerUnlocked>false</managerUnlocked>
+            <palliers>
+                <pallier>
+                    <name>TrouNoirUnlock</name>
+                    <logo>str1234</logo>
+                    <seuil>25</seuil>
+                    <idcible>5</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+            </palliers>
+        </product>
+		<product>
+            <id>6</id>
+            <name>Supernova</name>
+            <logo>http://localhost:8080/icones/supernova.jpg</logo>
+            <cout>1244160.00</cout>
+            <croissance>1.11</croissance>
+            <revenu>622080.00</revenu>
+            <vitesse>96000</vitesse>
+            <quantite>0</quantite>
+            <timeleft>96000</timeleft>
+            <managerUnlocked>false</managerUnlocked>
+            <palliers>
+                <pallier>
+                    <name>SupernovaUnlock</name>
+                    <logo>str1234</logo>
+                    <seuil>25</seuil>
+                    <idcible>6</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+            </palliers>
+        </product>
     </products>
-    <allunlocks>
+	<allunlocks>
         <pallier>
             <name>allUnlock</name>
             <logo>str1234</logo>
@@ -69,7 +161,7 @@
     </allunlocks>
     <upgrades>
         <pallier>
-            <name>planet</name>
+            <name>planeteUpgrade</name>
             <logo>str1234</logo>
             <seuil>250000</seuil>
             <idcible>1</idcible>
@@ -99,6 +191,6 @@
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
         </pallier>
-    </managers>
+    </managers> 
 </world>
 
