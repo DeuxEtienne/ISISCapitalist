@@ -22,9 +22,54 @@
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
-                    <name>planeteUnlock</name>
+                    <name>Mercure</name>
                     <logo>str1234</logo>
                     <seuil>25</seuil>
+                    <idcible>1</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Venus</name>
+                    <logo>str1234</logo>
+                    <seuil>50</seuil>
+                    <idcible>1</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Mars</name>
+                    <logo>str1234</logo>
+                    <seuil>100</seuil>
+                    <idcible>1</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Jupiter</name>
+                    <logo>str1234</logo>
+                    <seuil>200</seuil>
+                    <idcible>1</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Saturne</name>
+                    <logo>str1234</logo>
+                    <seuil>300</seuil>
+                    <idcible>1</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Uranus</name>
+                    <logo>str1234</logo>
+                    <seuil>500</seuil>
                     <idcible>1</idcible>
                     <ratio>2</ratio>
                     <typeratio>vitesse</typeratio>
@@ -45,9 +90,54 @@
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
-                    <name>soleilUnlock</name>
+                    <name>Sirius</name>
                     <logo>str1234</logo>
                     <seuil>25</seuil>
+                    <idcible>2</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Alpha du centaure</name>
+                    <logo>str1234</logo>
+                    <seuil>50</seuil>
+                    <idcible>2</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Véga</name>
+                    <logo>str1234</logo>
+                    <seuil>100</seuil>
+                    <idcible>2</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Altaïr</name>
+                    <logo>str1234</logo>
+                    <seuil>200</seuil>
+                    <idcible>2</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Belatrix</name>
+                    <logo>str1234</logo>
+                    <seuil>300</seuil>
+                    <idcible>2</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Antaros</name>
+                    <logo>str1234</logo>
+                    <seuil>500</seuil>
                     <idcible>2</idcible>
                     <ratio>2</ratio>
                     <typeratio>vitesse</typeratio>
@@ -68,9 +158,54 @@
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
-                    <name>systemeUnlock</name>
+                    <name>Polaris</name>
                     <logo>str1234</logo>
                     <seuil>25</seuil>
+                    <idcible>3</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Proxima du centaure</name>
+                    <logo>str1234</logo>
+                    <seuil>50</seuil>
+                    <idcible>3</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Beta Capricorne</name>
+                    <logo>str1234</logo>
+                    <seuil>100</seuil>
+                    <idcible>3</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Aurigae</name>
+                    <logo>str1234</logo>
+                    <seuil>200</seuil>
+                    <idcible>3</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Coronae Borealis</name>
+                    <logo>str1234</logo>
+                    <seuil>300</seuil>
+                    <idcible>3</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Acrux</name>
+                    <logo>str1234</logo>
+                    <seuil>500</seuil>
                     <idcible>3</idcible>
                     <ratio>2</ratio>
                     <typeratio>vitesse</typeratio>
@@ -91,9 +226,54 @@
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
-                    <name>galaxieUnlock</name>
+                    <name>Voie lactée</name>
                     <logo>str1234</logo>
                     <seuil>25</seuil>
+                    <idcible>4</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Andromède</name>
+                    <logo>str1234</logo>
+                    <seuil>50</seuil>
+                    <idcible>4</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Adell 2218</name>
+                    <logo>str1234</logo>
+                    <seuil>100</seuil>
+                    <idcible>4</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Galaxie du Tétard</name>
+                    <logo>str1234</logo>
+                    <seuil>200</seuil>
+                    <idcible>4</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Galaxie du Tournesol</name>
+                    <logo>str1234</logo>
+                    <seuil>300</seuil>
+                    <idcible>4</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Galaxie du Tourbillon</name>
+                    <logo>str1234</logo>
+                    <seuil>500</seuil>
                     <idcible>4</idcible>
                     <ratio>2</ratio>
                     <typeratio>vitesse</typeratio>
@@ -114,9 +294,54 @@
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
-                    <name>TrouNoirUnlock</name>
+                    <name>Einstein</name>
                     <logo>str1234</logo>
                     <seuil>25</seuil>
+                    <idcible>5</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Archimède</name>
+                    <logo>str1234</logo>
+                    <seuil>50</seuil>
+                    <idcible>5</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Galilée</name>
+                    <logo>str1234</logo>
+                    <seuil>100</seuil>
+                    <idcible>5</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Newton</name>
+                    <logo>str1234</logo>
+                    <seuil>200</seuil>
+                    <idcible>5</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Plank</name>
+                    <logo>str1234</logo>
+                    <seuil>300</seuil>
+                    <idcible>5</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Hawking</name>
+                    <logo>str1234</logo>
+                    <seuil>500</seuil>
                     <idcible>5</idcible>
                     <ratio>2</ratio>
                     <typeratio>vitesse</typeratio>
@@ -137,9 +362,54 @@
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
-                    <name>SupernovaUnlock</name>
+                    <name>Cassiopée</name>
                     <logo>str1234</logo>
                     <seuil>25</seuil>
+                    <idcible>6</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Ophiuchus</name>
+                    <logo>str1234</logo>
+                    <seuil>50</seuil>
+                    <idcible>6</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Persée</name>
+                    <logo>str1234</logo>
+                    <seuil>100</seuil>
+                    <idcible>6</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Hydre</name>
+                    <logo>str1234</logo>
+                    <seuil>200</seuil>
+                    <idcible>6</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Dorade</name>
+                    <logo>str1234</logo>
+                    <seuil>300</seuil>
+                    <idcible>6</idcible>
+                    <ratio>2</ratio>
+                    <typeratio>vitesse</typeratio>
+                    <unlocked>false</unlocked>
+                </pallier>
+				<pallier>
+                    <name>Bouvier</name>
+                    <logo>str1234</logo>
+                    <seuil>500</seuil>
                     <idcible>6</idcible>
                     <ratio>2</ratio>
                     <typeratio>vitesse</typeratio>
@@ -150,18 +420,36 @@
     </products>
 	<allunlocks>
         <pallier>
-            <name>allUnlock</name>
+            <name>Expansion de l'univers</name>
             <logo>str1234</logo>
-            <seuil>100000</seuil>
+            <seuil>5000000000</seuil>
             <idcible>0</idcible>
             <ratio>2</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
         </pallier>
+		<pallier>
+            <name>Infini intersidéral</name>
+            <logo>str1234</logo>
+            <seuil>10000000000</seuil>
+            <idcible>0</idcible>
+            <ratio>3</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Pouvoir des anges</name>
+            <logo>str1234</logo>
+            <seuil>100000000000</seuil>
+            <idcible>-1</idcible>
+            <ratio>2</ratio>
+            <typeratio>ange</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
     </allunlocks>
     <upgrades>
         <pallier>
-            <name>planeteUpgrade</name>
+            <name>Nouveaux Satelites</name>
             <logo>str1234</logo>
             <seuil>250000</seuil>
             <idcible>1</idcible>
@@ -169,10 +457,55 @@
             <typeratio>gain</typeratio>
             <unlocked>false</unlocked>
         </pallier>
+		<pallier>
+            <name>Ultra haute températue</name>
+            <logo>str1234</logo>
+            <seuil>500000</seuil>
+            <idcible>2</idcible>
+            <ratio>3</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Champs d'astéroïdes</name>
+            <logo>str1234</logo>
+            <seuil>1000000</seuil>
+            <idcible>3</idcible>
+            <ratio>3</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Toujours plus de matière noire</name>
+            <logo>str1234</logo>
+            <seuil>5000000</seuil>
+            <idcible>4</idcible>
+            <ratio>3</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Puissance supermassive</name>
+            <logo>str1234</logo>
+            <seuil>10000000</seuil>
+            <idcible>5</idcible>
+            <ratio>3</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Explosion interstellaire</name>
+            <logo>str1234</logo>
+            <seuil>1000000000</seuil>
+            <idcible>6</idcible>
+            <ratio>3</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
     </upgrades>
     <angelupgrades>
         <pallier>
-            <name>angelUpgrade</name>
+            <name>Sacrifce angélique</name>
             <logo>str1234</logo>
             <seuil>10000</seuil>
             <idcible>0</idcible>
@@ -180,13 +513,85 @@
             <typeratio>gain</typeratio>
             <unlocked>false</unlocked>
         </pallier>
+		<pallier>
+            <name>Mutinerie angélique</name>
+            <logo>str1234</logo>
+            <seuil>100000</seuil>
+            <idcible>-1</idcible>
+            <ratio>2</ratio>
+            <typeratio>ange</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Rébellion angélique</name>
+            <logo>str1234</logo>
+            <seuil>1000000</seuil>
+            <idcible>-1</idcible>
+            <ratio>2</ratio>
+            <typeratio>ange</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Selection angélique</name>
+            <logo>str1234</logo>
+            <seuil>10000000</seuil>
+            <idcible>0</idcible>
+            <ratio>5</ratio>
+            <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
     </angelupgrades>
     <managers>
         <pallier>
-            <name>J</name>
+            <name>Albator</name>
             <logo>str1234</logo>
             <seuil>1000</seuil>
             <idcible>1</idcible>
+            <ratio>0</ratio>
+            <typeratio>vitesse</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Capitaine Flamme</name>
+            <logo>str1234</logo>
+            <seuil>15000</seuil>
+            <idcible>2</idcible>
+            <ratio>0</ratio>
+            <typeratio>vitesse</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Lilou</name>
+            <logo>str1234</logo>
+            <seuil>50000</seuil>
+            <idcible>3</idcible>
+            <ratio>0</ratio>
+            <typeratio>vitesse</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Capitaine Kirk</name>
+            <logo>str1234</logo>
+            <seuil>100000</seuil>
+            <idcible>4</idcible>
+            <ratio>0</ratio>
+            <typeratio>vitesse</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Yoda</name>
+            <logo>str1234</logo>
+            <seuil>500000</seuil>
+            <idcible>5</idcible>
+            <ratio>0</ratio>
+            <typeratio>vitesse</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+		<pallier>
+            <name>Le Docteur</name>
+            <logo>str1234</logo>
+            <seuil>1000000</seuil>
+            <idcible>6</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
