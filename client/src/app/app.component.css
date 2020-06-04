@@ -1,12 +1,35 @@
+#app {
+  display: grid;
+  grid-template-areas: "head head"
+                       "nav  main";
+  gap: 20px;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 200px 1fr;
+  min-height: 100vh;
+}
+
 header {
+  grid-area: head;
   display: grid;
-  grid-template-columns: 25%25%30%20%;
+  gap: inherit;
+  grid-template-columns: 300px 1fr 1fr 1fr;
 }
-.main {
+
+nav {
+  grid-area: nav;
   display: grid;
-  grid-template-columns: 20%80%;
+  gap: inherit;
+  padding: 1em;
 }
+
+#products {
+  grid-area: main;
+  display: grid;
+  gap: inherit;
+  grid-template-columns: 1fr 1fr;
+}
+
 .product {
   display: grid;
-  grid-template-columns: 1fr1fr;
+  grid-template-columns: 1fr 1fr;
 }

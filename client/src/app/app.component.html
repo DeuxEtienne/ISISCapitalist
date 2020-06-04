@@ -1,29 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+<div id="app">
   <header>
-    <div>logo monde</div>
-    <div>argent </div>
+    <div><img [attr.src]="server+world.logo" /> <span>{{world.name}}</span></div>
+    <div>argent</div>
     <div>multiplicateur</div>
     <div>ID du joueur</div>
   </header>
   <nav>
-    <div>liste des boutons de menu</div>
+    <button mat-raised-button color="primary">Unlocks</button>
+    <button mat-raised-button color="primary">Cash Upgrades</button>
+    <button mat-raised-button color="primary">Anget Upgrades</button>
+    <button mat-raised-button color="primary">Managers</button>
+    <button mat-raised-button color="primary">Investors</button>
   </nav>
-  <div class="main">
-    <div class="product">
-      <div>premier produit</div>
-      <div>second produit</div>
-      <div>troisième produit</div>
-      <div>quatrième produit</div>
-      <div>cinquième produit</div>
-      <div>sixième produit</div>
-    </div>
+  <div id="products">
+    <div class="product">premier produit</div>
+    <div class="product">second produit</div>
+    <div class="product">troisième produit</div>
+    <div class="product">quatrième produit</div>
+    <div class="product">cinquième produit</div>
+    <div class="product">sixième produit</div>
   </div>
-</body>
-</html>
+</div>
