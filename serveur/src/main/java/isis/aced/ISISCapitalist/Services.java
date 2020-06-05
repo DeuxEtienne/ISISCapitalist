@@ -9,19 +9,27 @@ import javax.xml.bind.Unmarshaller;
 import java.io.*;
 
 public class Services {
-    public World readWorldFromXml() throws JAXBException {
-        InputStream input = getClass().getClassLoader().getResourceAsStream("world.xml");
+    public World readWorldFromXml(String username) throws IOException,JAXBException{
         JAXBContext jc = JAXBContext.newInstance(World.class);
         Unmarshaller u = jc.createUnmarshaller();
-        return (World) u.unmarshal(input);
+        InputStream input;
+
+        if (username != null) {
+             input = new FileInputStream(username + "-world.xml");
+        } else {
+            input = getClass().getClassLoader().getResourceAsStream("world.xml");
+        }
+        World w = (World) u.unmarshal(input);
+        input.close();
+        return w;
     }
 
-    public void saveWorldToXml(World world) throws JAXBException, FileNotFoundException {
+    public void saveWorldToXml(World world, String username) throws JAXBException,FileNotFoundException {
         Marshaller marsh = JAXBContext.newInstance(World.class).createMarshaller();
-        marsh.marshal(world, new FileOutputStream("world.xml"));
+        marsh.marshal(world, new FileOutputStream(username + "-world.xml"));
     }
 
-    public World getWorld() throws JAXBException{
-        return readWorldFromXml();
+    public World getWorld(String username) throws IOException,JAXBException {
+        return readWorldFromXml(username);
     }
 }
