@@ -7,27 +7,28 @@ import { World, Pallier, Product } from '../../models/world';
   providedIn: 'root',
 })
 export class RestserviceService {
-  private server = 'http://localhost:8080/';
-  private user = '';
+  private _server = 'http://localhost:8080/';
+  private _user = '';
 
   constructor(private http: HttpClient) {}
 
-  getUser(): string {
-    return this.user;
+  get user(): string {
+    return this._user
   }
 
-  setUser(user: string): void {
-    this.user = user;
+  set user(user: string) {
+    this._user = user
   }
 
-  getServer(): string {
-    return this.server;
+  get server(): string {
+    return this._server
   }
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error);
     return Promise.reject(error.message || error);
   }
+  
   getWorld(): Promise<World> {
     return this.http
       .get(this.server + "adventureisis/generic/world")
