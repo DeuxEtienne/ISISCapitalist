@@ -13,7 +13,7 @@ export class AppComponent {
   server: string;
 
   constructor(private service: RestserviceService) {
-    this.server = service.getServer()
+    this.server = service.server
     service.getWorld().then(
       world => {
         this.world = world;

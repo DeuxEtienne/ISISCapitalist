@@ -73,4 +73,16 @@ public class ProductsType {
         return this.product;
     }
 
+    public ProductType getProduct(int id) {
+        if (this.product == null) {
+            return null;
+        }
+        for (ProductType p: this.product){
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
+    }
+
 }

@@ -71,4 +71,12 @@ public class PalliersType {
         return this.pallier;
     }
 
+    public PallierType getPallier(String name) {
+        for (PallierType p: pallier){
+            if (p.name == name) {
+                return p;
+            }
+        }
+        return null;
+    }
 }
