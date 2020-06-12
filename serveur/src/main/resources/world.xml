@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <world>
     <name>God simulator</name>
-    <logo>http://localhost:8080/icones/jesus.jpg</logo>
+    <logo>/icones/jesus.jpg</logo>
     <money>0</money>
     <score>0</score>
     <totalangels>0</totalangels>
@@ -12,18 +12,18 @@
         <product>
             <id>1</id>
             <name>Planète</name>
-            <logo>http://localhost:8080/icones/planete.jpg</logo>
+            <logo>/icones/planete.jpg</logo>
             <cout>4.00</cout>
             <croissance>1.07</croissance>
             <revenu>1.00</revenu>
             <vitesse>500</vitesse>
             <quantite>1</quantite>
-            <timeleft>500</timeleft>
+            <timeleft>0</timeleft>
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
                     <name>Mercure</name>
-                    <logo>http://localhost:8080/icones/planete-mercure.jpg</logo>
+                    <logo>/icones/planete-mercure.jpg</logo>
                     <seuil>25</seuil>
                     <idcible>1</idcible>
                     <ratio>2</ratio>
@@ -32,7 +32,7 @@
                 </pallier>
 				<pallier>
                     <name>Venus</name>
-                    <logo>http://localhost:8080/icones/planete-venus.jpg</logo>
+                    <logo>/icones/planete-venus.jpg</logo>
                     <seuil>50</seuil>
                     <idcible>1</idcible>
                     <ratio>2</ratio>
@@ -41,7 +41,7 @@
                 </pallier>
 				<pallier>
                     <name>Mars</name>
-                    <logo>http://localhost:8080/icones/planete-mars.jpg</logo>
+                    <logo>/icones/planete-mars.jpg</logo>
                     <seuil>100</seuil>
                     <idcible>1</idcible>
                     <ratio>2</ratio>
@@ -50,7 +50,7 @@
                 </pallier>
 				<pallier>
                     <name>Jupiter</name>
-                    <logo>http://localhost:8080/icones/planete-jupiter.jpg</logo>
+                    <logo>/icones/planete-jupiter.jpg</logo>
                     <seuil>200</seuil>
                     <idcible>1</idcible>
                     <ratio>2</ratio>
@@ -59,16 +59,16 @@
                 </pallier>
 				<pallier>
                     <name>Saturne</name>
-                    <logo>http://localhost:8080/icones/planete-saturne.jpg</logo>
+                    <logo>/icones/planete-saturne.jpg</logo>
                     <seuil>300</seuil>
                     <idcible>1</idcible>
-                    <ratio>2</ratio>
+                    <ratio>2</ratio>²
                     <typeratio>vitesse</typeratio>
                     <unlocked>false</unlocked>
                 </pallier>
 				<pallier>
                     <name>Uranus</name>
-                    <logo>http://localhost:8080/icones/planete-uranus.jpg</logo>
+                    <logo>/icones/planete-uranus.jpg</logo>
                     <seuil>500</seuil>
                     <idcible>1</idcible>
                     <ratio>2</ratio>
@@ -79,19 +79,19 @@
         </product>
         <product>
             <id>2</id>
-            <name>Soleil</name>
-            <logo>http://localhost:8080/icones/sun.jpg</logo>
+            <name>Etoile</name>
+            <logo>/icones/sun.jpg</logo>
             <cout>69.00</cout>
             <croissance>1.15</croissance>
             <revenu>60</revenu>
             <vitesse>3000</vitesse>
             <quantite>0</quantite>
-            <timeleft>3000</timeleft>
+            <timeleft>0</timeleft>
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
                     <name>Sirius</name>
-                    <logo>http://localhost:8080/icones/sun-sirius.jpg</logo>
+                    <logo>/icones/sun-sirius.jpg</logo>
                     <seuil>25</seuil>
                     <idcible>2</idcible>
                     <ratio>2</ratio>
@@ -100,7 +100,7 @@
                 </pallier>
 				<pallier>
                     <name>Alpha du centaure</name>
-                    <logo>http://localhost:8080/icones/sun-centaure.jpg</logo>
+                    <logo>/icones/sun-centaure.jpg</logo>
                     <seuil>50</seuil>
                     <idcible>2</idcible>
                     <ratio>2</ratio>
@@ -109,7 +109,7 @@
                 </pallier>
 				<pallier>
                     <name>Véga</name>
-                    <logo>http://localhost:8080/icones/sun-vega.jpg</logo>
+                    <logo>/icones/sun-vega.jpg</logo>
                     <seuil>100</seuil>
                     <idcible>2</idcible>
                     <ratio>2</ratio>
@@ -118,7 +118,7 @@
                 </pallier>
 				<pallier>
                     <name>Altaïr</name>
-                    <logo>http://localhost:8080/icones/sun-altair.jpg</logo>
+                    <logo>/icones/sun-altair.jpg</logo>
                     <seuil>200</seuil>
                     <idcible>2</idcible>
                     <ratio>2</ratio>
@@ -127,7 +127,7 @@
                 </pallier>
 				<pallier>
                     <name>Belatrix</name>
-                    <logo>http://localhost:8080/icones/sun-belatrix.jpg</logo>
+                    <logo>/icones/sun-belatrix.jpg</logo>
                     <seuil>300</seuil>
                     <idcible>2</idcible>
                     <ratio>2</ratio>
@@ -136,7 +136,7 @@
                 </pallier>
 				<pallier>
                     <name>Antaros</name>
-                    <logo>http://localhost:8080/icones/sun-antaros.jpg</logo>
+                    <logo>/icones/sun-antaros.jpg</logo>
                     <seuil>500</seuil>
                     <idcible>2</idcible>
                     <ratio>2</ratio>
@@ -148,18 +148,18 @@
         <product>
             <id>3</id>
             <name>Système solaire</name>
-            <logo>http://localhost:8080/icones/solar-system.jpg</logo>
+            <logo>/icones/solar-system.jpg</logo>
             <cout>720.00</cout>
             <croissance>1.14</croissance>
             <revenu>540</revenu>
             <vitesse>6000</vitesse>
             <quantite>0</quantite>
-            <timeleft>60000</timeleft>
+            <timeleft>0</timeleft>
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
                     <name>Polaris</name>
-                    <logo>http://localhost:8080/icones/solar-system-polaris.jpg</logo>
+                    <logo>/icones/solar-system-polaris.jpg</logo>
                     <seuil>25</seuil>
                     <idcible>3</idcible>
                     <ratio>2</ratio>
@@ -168,7 +168,7 @@
                 </pallier>
 				<pallier>
                     <name>Proxima du centaure</name>
-                    <logo>http://localhost:8080/icones/solar-system-centaure.jpg</logo>
+                    <logo>/icones/solar-system-centaure.jpg</logo>
                     <seuil>50</seuil>
                     <idcible>3</idcible>
                     <ratio>2</ratio>
@@ -177,7 +177,7 @@
                 </pallier>
 				<pallier>
                     <name>Beta Capricorne</name>
-                    <logo>http://localhost:8080/icones/solar-system-beta.jpg</logo>
+                    <logo>/icones/solar-system-beta.jpg</logo>
                     <seuil>100</seuil>
                     <idcible>3</idcible>
                     <ratio>2</ratio>
@@ -186,7 +186,7 @@
                 </pallier>
 				<pallier>
                     <name>Aurigae</name>
-                    <logo>http://localhost:8080/icones/solar-system-aurigae.jpg</logo>
+                    <logo>/icones/solar-system-aurigae.jpg</logo>
                     <seuil>200</seuil>
                     <idcible>3</idcible>
                     <ratio>2</ratio>
@@ -195,7 +195,7 @@
                 </pallier>
 				<pallier>
                     <name>Coronae Borealis</name>
-                    <logo>http://localhost:8080/icones/solar-system-coronae.jpg</logo>
+                    <logo>/icones/solar-system-coronae.jpg</logo>
                     <seuil>300</seuil>
                     <idcible>3</idcible>
                     <ratio>2</ratio>
@@ -204,7 +204,7 @@
                 </pallier>
 				<pallier>
                     <name>Acrux</name>
-                    <logo>http://localhost:8080/icones/solar-system-acrux.jpg</logo>
+                    <logo>/icones/solar-system-acrux.jpg</logo>
                     <seuil>500</seuil>
                     <idcible>3</idcible>
                     <ratio>2</ratio>
@@ -216,18 +216,18 @@
 		<product>
             <id>4</id>
             <name>Galaxie</name>
-            <logo>http://localhost:8080/icones/galaxie.jpg</logo>
+            <logo>/icones/galaxie.jpg</logo>
             <cout>8640.00</cout>
             <croissance>1.13</croissance>
             <revenu>4320.00</revenu>
             <vitesse>12000</vitesse>
             <quantite>0</quantite>
-            <timeleft>12000</timeleft>
+            <timeleft>0</timeleft>
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
                     <name>Voie lactée</name>
-                    <logo>http://localhost:8080/icones/galaxie-voie-lactee.jpg</logo>
+                    <logo>/icones/galaxie-voie-lactee.jpg</logo>
                     <seuil>25</seuil>
                     <idcible>4</idcible>
                     <ratio>2</ratio>
@@ -236,7 +236,7 @@
                 </pallier>
 				<pallier>
                     <name>Andromède</name>
-                    <logo>http://localhost:8080/icones/galaxie-andromede.jpg</logo>
+                    <logo>/icones/galaxie-andromede.jpg</logo>
                     <seuil>50</seuil>
                     <idcible>4</idcible>
                     <ratio>2</ratio>
@@ -245,7 +245,7 @@
                 </pallier>
 				<pallier>
                     <name>Adell 2218</name>
-                    <logo>http://localhost:8080/icones/galaxie-adell.jpg</logo>
+                    <logo>/icones/galaxie-adell.jpg</logo>
                     <seuil>100</seuil>
                     <idcible>4</idcible>
                     <ratio>2</ratio>
@@ -254,7 +254,7 @@
                 </pallier>
 				<pallier>
                     <name>Galaxie du Tétard</name>
-                    <logo>http://localhost:8080/icones/galaxie-tetard.jpg</logo>
+                    <logo>/icones/galaxie-tetard.jpg</logo>
                     <seuil>200</seuil>
                     <idcible>4</idcible>
                     <ratio>2</ratio>
@@ -263,7 +263,7 @@
                 </pallier>
 				<pallier>
                     <name>Galaxie du Tournesol</name>
-                    <logo>http://localhost:8080/icones/galaxie-tournesol.jpg</logo>
+                    <logo>/icones/galaxie-tournesol.jpg</logo>
                     <seuil>300</seuil>
                     <idcible>4</idcible>
                     <ratio>2</ratio>
@@ -272,7 +272,7 @@
                 </pallier>
 				<pallier>
                     <name>Galaxie du Tourbillon</name>
-                    <logo>http://localhost:8080/icones/galaxie-tourbillon.jpg</logo>
+                    <logo>/icones/galaxie-tourbillon.jpg</logo>
                     <seuil>500</seuil>
                     <idcible>4</idcible>
                     <ratio>2</ratio>
@@ -284,18 +284,18 @@
 		<product>
             <id>5</id>
             <name>Trou Noir</name>
-            <logo>http://localhost:8080/icones/black-hole.jpg</logo>
+            <logo>/icones/black-hole.jpg</logo>
             <cout>103680.00</cout>
             <croissance>1.12</croissance>
             <revenu>51840.00</revenu>
             <vitesse>24000</vitesse>
             <quantite>0</quantite>
-            <timeleft>24000</timeleft>
+            <timeleft>0</timeleft>
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
                     <name>Einstein</name>
-                    <logo>http://localhost:8080/icones/black-hole-einstein.jpg</logo>
+                    <logo>/icones/black-hole-einstein.jpg</logo>
                     <seuil>25</seuil>
                     <idcible>5</idcible>
                     <ratio>2</ratio>
@@ -304,7 +304,7 @@
                 </pallier>
 				<pallier>
                     <name>Archimède</name>
-                    <logo>http://localhost:8080/icones/black-hole-archimede.jpg</logo>
+                    <logo>/icones/black-hole-archimede.jpg</logo>
                     <seuil>50</seuil>
                     <idcible>5</idcible>
                     <ratio>2</ratio>
@@ -313,7 +313,7 @@
                 </pallier>
 				<pallier>
                     <name>Galilée</name>
-                    <logo>http://localhost:8080/icones/black-hole-galilee.jpg</logo>
+                    <logo>/icones/black-hole-galilee.jpg</logo>
                     <seuil>100</seuil>
                     <idcible>5</idcible>
                     <ratio>2</ratio>
@@ -322,7 +322,7 @@
                 </pallier>
 				<pallier>
                     <name>Newton</name>
-                    <logo>http://localhost:8080/icones/black-hole-newton.jpg</logo>
+                    <logo>/icones/black-hole-newton.jpg</logo>
                     <seuil>200</seuil>
                     <idcible>5</idcible>
                     <ratio>2</ratio>
@@ -331,7 +331,7 @@
                 </pallier>
 				<pallier>
                     <name>Plank</name>
-                    <logo>http://localhost:8080/icones/black-hole-plank.jpg</logo>
+                    <logo>/icones/black-hole-plank.jpg</logo>
                     <seuil>300</seuil>
                     <idcible>5</idcible>
                     <ratio>2</ratio>
@@ -340,7 +340,7 @@
                 </pallier>
 				<pallier>
                     <name>Hawking</name>
-                    <logo>http://localhost:8080/icones/black-hole-hawking.jpg</logo>
+                    <logo>/icones/black-hole-hawking.jpg</logo>
                     <seuil>500</seuil>
                     <idcible>5</idcible>
                     <ratio>2</ratio>
@@ -352,18 +352,18 @@
 		<product>
             <id>6</id>
             <name>Supernova</name>
-            <logo>http://localhost:8080/icones/supernova.jpg</logo>
+            <logo>/icones/supernova.jpg</logo>
             <cout>1244160.00</cout>
             <croissance>1.11</croissance>
             <revenu>622080.00</revenu>
             <vitesse>96000</vitesse>
             <quantite>0</quantite>
-            <timeleft>96000</timeleft>
+            <timeleft>0</timeleft>
             <managerUnlocked>false</managerUnlocked>
             <palliers>
                 <pallier>
                     <name>Cassiopée</name>
-                    <logo>http://localhost:8080/icones/supernova-cassiopee.jpg</logo>
+                    <logo>/icones/supernova-cassiopee.jpg</logo>
                     <seuil>25</seuil>
                     <idcible>6</idcible>
                     <ratio>2</ratio>
@@ -372,7 +372,7 @@
                 </pallier>
 				<pallier>
                     <name>Ophiuchus</name>
-                    <logo>http://localhost:8080/icones/supernova-ophiuchus.jpg</logo>
+                    <logo>/icones/supernova-ophiuchus.jpg</logo>
                     <seuil>50</seuil>
                     <idcible>6</idcible>
                     <ratio>2</ratio>
@@ -381,7 +381,7 @@
                 </pallier>
 				<pallier>
                     <name>Persée</name>
-                    <logo>http://localhost:8080/icones/supernova-persee.jpg</logo>
+                    <logo>/icones/supernova-persee.jpg</logo>
                     <seuil>100</seuil>
                     <idcible>6</idcible>
                     <ratio>2</ratio>
@@ -390,7 +390,7 @@
                 </pallier>
 				<pallier>
                     <name>Hydre</name>
-                    <logo>http://localhost:8080/icones/supernova-hydre.jpg</logo>
+                    <logo>/icones/supernova-hydre.jpg</logo>
                     <seuil>200</seuil>
                     <idcible>6</idcible>
                     <ratio>2</ratio>
@@ -399,7 +399,7 @@
                 </pallier>
 				<pallier>
                     <name>Dorade</name>
-                    <logo>http://localhost:8080/icones/supernova-dorade.jpg</logo>
+                    <logo>/icones/supernova-dorade.jpg</logo>
                     <seuil>300</seuil>
                     <idcible>6</idcible>
                     <ratio>2</ratio>
@@ -408,7 +408,7 @@
                 </pallier>
 				<pallier>
                     <name>Bouvier</name>
-                    <logo>http://localhost:8080/icones/supernova-bouvier.jpg</logo>
+                    <logo>/icones/supernova-bouvier.jpg</logo>
                     <seuil>500</seuil>
                     <idcible>6</idcible>
                     <ratio>2</ratio>
@@ -421,7 +421,7 @@
 	<allunlocks>
         <pallier>
             <name>Expansion de l'univers</name>
-            <logo>http://localhost:8080/icones/expansion-univers.jpg</logo>
+            <logo>/icones/expansion-univers.jpg</logo>
             <seuil>5000000000</seuil>
             <idcible>0</idcible>
             <ratio>2</ratio>
@@ -430,7 +430,7 @@
         </pallier>
 		<pallier>
             <name>Infini intersidéral</name>
-            <logo>http://localhost:8080/icones/infini.jpg</logo>
+            <logo>/icones/infini.jpg</logo>
             <seuil>10000000000</seuil>
             <idcible>0</idcible>
             <ratio>3</ratio>
@@ -439,7 +439,7 @@
         </pallier>
 		<pallier>
             <name>Pouvoir des anges</name>
-            <logo>http://localhost:8080/icones/pouvoir.jpg</logo>
+            <logo>/icones/pouvoir.jpg</logo>
             <seuil>100000000000</seuil>
             <idcible>-1</idcible>
             <ratio>2</ratio>
@@ -450,7 +450,7 @@
     <upgrades>
         <pallier>
             <name>Nouveaux Satellites</name>
-            <logo>http://localhost:8080/icones/satellite.jpg</logo>
+            <logo>/icones/satellite.jpg</logo>
             <seuil>250000</seuil>
             <idcible>1</idcible>
             <ratio>3</ratio>
@@ -459,7 +459,7 @@
         </pallier>
 		<pallier>
             <name>Ultra haute températue</name>
-            <logo>http://localhost:8080/icones/haute_temperature.jpg</logo>
+            <logo>/icones/haute_temperature.jpg</logo>
             <seuil>500000</seuil>
             <idcible>2</idcible>
             <ratio>3</ratio>
@@ -468,7 +468,7 @@
         </pallier>
 		<pallier>
             <name>Champs d'astéroïdes</name>
-            <logo>http://localhost:8080/icones/asteroid_field.jpg</logo>
+            <logo>/icones/asteroid_field.jpg</logo>
             <seuil>1000000</seuil>
             <idcible>3</idcible>
             <ratio>3</ratio>
@@ -477,7 +477,7 @@
         </pallier>
 		<pallier>
             <name>Toujours plus de matière noire</name>
-            <logo>http://localhost:8080/icones/matiere_noire.jpg</logo>
+            <logo>/icones/matiere_noire.jpg</logo>
             <seuil>5000000</seuil>
             <idcible>4</idcible>
             <ratio>3</ratio>
@@ -486,7 +486,7 @@
         </pallier>
 		<pallier>
             <name>Puissance supermassive</name>
-            <logo>http://localhost:8080/icones/puissance.jpg</logo>
+            <logo>/icones/puissance.jpg</logo>
             <seuil>10000000</seuil>
             <idcible>5</idcible>
             <ratio>3</ratio>
@@ -495,7 +495,7 @@
         </pallier>
 		<pallier>
             <name>Explosion interstellaire</name>
-            <logo>http://localhost:8080/icones/explosion.jpg</logo>
+            <logo>/icones/explosion.jpg</logo>
             <seuil>1000000000</seuil>
             <idcible>6</idcible>
             <ratio>3</ratio>
@@ -506,7 +506,7 @@
     <angelupgrades>
         <pallier>
             <name>Sacrifce angélique</name>
-            <logo>http://localhost:8080/icones/sacrifice.jpg</logo>
+            <logo>/icones/sacrifice.jpg</logo>
             <seuil>10000</seuil>
             <idcible>0</idcible>
             <ratio>3</ratio>
@@ -515,7 +515,7 @@
         </pallier>
 		<pallier>
             <name>Mutinerie angélique</name>
-            <logo>http://localhost:8080/icones/mutinerie.jpg</logo>
+            <logo>/icones/mutinerie.jpg</logo>
             <seuil>100000</seuil>
             <idcible>-1</idcible>
             <ratio>2</ratio>
@@ -524,7 +524,7 @@
         </pallier>
 		<pallier>
             <name>Rébellion angélique</name>
-            <logo>http://localhost:8080/icones/rebellion.jpg</logo>
+            <logo>/icones/rebellion.jpg</logo>
             <seuil>1000000</seuil>
             <idcible>-1</idcible>
             <ratio>2</ratio>
@@ -533,7 +533,7 @@
         </pallier>
 		<pallier>
             <name>Selection angélique</name>
-            <logo>http://localhost:8080/icones/selection.jpg</logo>
+            <logo>/icones/selection.jpg</logo>
             <seuil>10000000</seuil>
             <idcible>0</idcible>
             <ratio>5</ratio>
@@ -544,54 +544,54 @@
     <managers>
         <pallier>
             <name>Albator</name>
-            <logo>http://localhost:8080/icones/albator.jpg</logo>
+            <logo>/icones/albator.jpg</logo>
             <seuil>1000</seuil>
-            <idcible>1</idcible>
+            <idcible>0</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
         </pallier>
 		<pallier>
             <name>Capitaine Flam</name>
-            <logo>http://localhost:8080/icones/capitaine_flam.jpg</logo>
+            <logo>/icones/capitaine_flam.jpg</logo>
             <seuil>10000</seuil>
-            <idcible>2</idcible>
+            <idcible>1</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
         </pallier>
 		<pallier>
             <name>Leeloo</name>
-            <logo>http://localhost:8080/icones/leeloo.jpg</logo>
+            <logo>/icones/leeloo.jpg</logo>
             <seuil>50000</seuil>
-            <idcible>3</idcible>
+            <idcible>2</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
         </pallier>
 		<pallier>
             <name>Capitaine Kirk</name>
-            <logo>http://localhost:8080/icones/capitaine_kirk.jpg</logo>
+            <logo>/icones/capitaine_kirk.jpg</logo>
             <seuil>100000</seuil>
-            <idcible>4</idcible>
+            <idcible>3</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
         </pallier>
 		<pallier>
             <name>Yoda</name>
-            <logo>http://localhost:8080/icones/yoda.jpg</logo>
+            <logo>/icones/yoda.jpg</logo>
             <seuil>500000</seuil>
-            <idcible>5</idcible>
+            <idcible>4</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
         </pallier>
 		<pallier>
             <name>Le Docteur</name>
-            <logo>http://localhost:8080/icones/the_doctor.jpg</logo>
+            <logo>/icones/the_doctor.jpg</logo>
             <seuil>1000000</seuil>
-            <idcible>6</idcible>
+            <idcible>5</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>

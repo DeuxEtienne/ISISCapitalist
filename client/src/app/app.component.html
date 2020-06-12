@@ -1,23 +1,42 @@
 <div id="app">
   <header>
-    <div><img [attr.src]="server+world.logo" /> <span>{{world.name}}</span></div>
-    <div>argent</div>
-    <div>multiplicateur</div>
+    <div class="logo"><img [attr.src]="server+world.logo" />
+      <div>{{world.name}}</div>
+    </div>
+    <div>{{ world.money | bigvalue }}</div>
+    <div><button mat-raised-button color="primary"
+        (click)="calcQtMulti()">{{ qtmulti==0 ? "Max" : "x"+qtmulti }}</button></div>
     <div>ID du joueur</div>
   </header>
   <nav>
-    <div><button mat-raised-button color="primary">Unlocks</button></div>
-    <div><button mat-raised-button color="primary">Cash Upgrades</button></div>
-    <div><button mat-raised-button color="primary">Investors</button></div>
-    <div><button mat-raised-button color="primary">Anget Upgrades</button></div>
-    <div><button mat-raised-button color="primary">Managers</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Unlocks</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Cash Upgrades</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Investors</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Anget Upgrades</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary" [matBadge]="badgeManagers"
+      [matBadgeHidden]="badgeManagers==0"
+        (click)="showManagers = !showManagers">Managers</button></div>
   </nav>
   <div id="products">
-    <div class="product">premier produit</div>
-    <div class="product">second produit</div>
-    <div class="product">troisième produit</div>
-    <div class="product">quatrième produit</div>
-    <div class="product">cinquième produit</div>
-    <div class="product">sixième produit</div>
+    <div *ngFor="let p of world.products.product as list">
+      <app-product [product]="p" [qtmulti]="qtmulti" [wmoney]="world.money" [server]="server"
+        (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)"></app-product>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="showManagers">
+    <h1>Managers make you feel better !</h1>
+    <div *ngFor="let manager of world.managers.pallier">
+      <div *ngIf="!manager.unlocked" class="manager-layout">
+        <div class="logo"><img [attr.src]="server+manager.logo"></div>
+        <div class="manager-text">
+          <p>{{ manager.name}}</p>
+          <p>{{ world.products.product[manager.idcible].name }}</p>
+          <p>{{ manager.seuil }}</p>
+        </div>
+        <button [disabled]="!(world.money>=manager.seuil)" (click)="hireManager(manager)" mat-raised-button
+          color="primary">Hire !</button>
+      </div>
+    </div>
   </div>
 </div>

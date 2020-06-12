@@ -1,1 +1,18 @@
-<p>product works!</p>
+<div class="product">
+    <div class="icone" (click)="startFabrication()">
+        <img [attr.src]="server+product.logo">
+        <p class="qtt">{{ product.quantite }}</p>
+    </div>
+    <mat-progress-bar class="production" [value]="progressbarvalue"></mat-progress-bar>
+    <button mat-flat-button color="primary" [disabled]="calcCanBuy()==0" (click)="buy()">
+        <div class="achat">
+            <div>
+                Buy <br/>
+                {{ calcCanBuy()>0 ? "x"+calcCanBuy() : (qtmulti==0 ? 1 : qtmulti) }}
+            </div>
+            <div>{{ getPrix(calcCanBuy()>0 ? calcCanBuy() : (qtmulti==0 ? 1 : qtmulti)) | bigvalue }}</div>
+        </div>
+    </button>
+
+    <div class="temps-prod">{{ product.timeleft!=0 ? product.timeleft : product.vitesse }}</div>
+</div>

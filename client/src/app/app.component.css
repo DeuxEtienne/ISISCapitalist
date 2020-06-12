@@ -2,9 +2,9 @@
   display: grid;
   grid-template-areas: "head head"
                        "nav  main";
-  gap: 20px;
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 200px 1fr;
+  gap: 0.5rem;
+  grid-template-columns: 18rem 1fr;
+  grid-template-rows: 10rem 1fr;
   min-height: 100vh;
 }
 
@@ -12,14 +12,26 @@ header {
   grid-area: head;
   display: grid;
   gap: inherit;
-  grid-template-columns: 300px 1fr 1fr 1fr;
+  grid-template-columns: 18rem 2fr 2fr 1fr;
+  justify-items: center;
+  align-items: center;
 }
 
 nav {
   grid-area: nav;
-  display: grid;
-  gap: inherit;
-  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+.menu-item {
+  margin: auto;
+  padding: 1rem;
+  width: 10rem;
+}
+.menu-button{
+  width: 100%;
 }
 
 #products {
@@ -27,9 +39,72 @@ nav {
   display: grid;
   gap: inherit;
   grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.product {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.logo {
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo > img {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 100%;
+}
+
+.logo > div {
+  margin-left: 0.5rem;
+  font-size: 2rem;
+  color: white;
+  line-height: 2rem;
+}
+
+.modal {
+  position: absolute;
+  left: 18rem;
+  top: 10rem;
+  max-height: 35rem;
+  overflow: scroll;
+  background-color: rgb(31, 31, 51);
+  padding-left: 10rem;
+  padding-right: 10rem;
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+}
+
+.modal > h1 {
+  text-align: center;
+}
+
+.manager-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  min-width: 25rem;
+  max-width: 35rem;
+  box-shadow: 0 0 0.2rem #FFFFFF;
+  border-radius: 0.1rem;
+  margin: 1rem;
+}
+
+.manager-layout button {
+  margin: auto;
+  margin-right: 2rem;
+}
+
+.manager-text {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.manager-text p {
+  text-align: center;
 }
