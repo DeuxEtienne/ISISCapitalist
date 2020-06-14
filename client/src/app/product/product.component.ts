@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../models/world';
+import { RestserviceService } from '../services/restservice/restservice.service';
 
 @Component({
   selector: 'app-product',
@@ -74,7 +75,6 @@ export class ProductComponent implements OnInit {
     if (this._product.timeleft > 0) {
       this._product.timeleft =
         this._product.timeleft - (Date.now() - this.lastupdate);
-      console.log(this._product.timeleft);
       if (this._product.timeleft <= 0) {
         if (this._product.managerUnlocked) {
           this.startFabrication();
@@ -109,28 +109,28 @@ export class ProductComponent implements OnInit {
   buy(): void {
     switch (this._qtmulti) {
       case 1:
-        this.onBuy.emit(this._product.cout);
         this._product.quantite += 1;
         this._product.cout = this._product.cout * this._product.croissance;
+        this.onBuy.emit(this._product.cout);
         break;
       case 10:
-        this.onBuy.emit(this.getPrix(10));
         this._product.quantite += 10;
         this._product.cout =
-          this._product.cout * this._product.croissance ** 10;
+        this._product.cout * this._product.croissance ** 10;
+        this.onBuy.emit(this.getPrix(10));
         break;
       case 100:
-        this.onBuy.emit(this.getPrix(100));
         this._product.quantite += 10;
         this._product.cout =
-          this._product.cout * this._product.croissance ** 10;
+        this._product.cout * this._product.croissance ** 10;
+        this.onBuy.emit(this.getPrix(100));
         break;
       case 0:
         let qtt = this.calcMaxCanBuy();
-        this.onBuy.emit(this.getPrix(qtt));
         this._product.quantite += qtt;
         this._product.cout =
-          this._product.cout * this._product.croissance ** qtt;
+        this._product.cout * this._product.croissance ** qtt;
+        this.onBuy.emit(this.getPrix(qtt));
         break;
     }
   }

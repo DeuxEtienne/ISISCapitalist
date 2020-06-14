@@ -11,15 +11,14 @@ import javax.xml.bind.Unmarshaller;
 import java.io.*;
 
 public class Services {
-    public World readWorldFromXml(String username) throws IOException,JAXBException{
+    public World readWorldFromXml(String username) throws IOException, JAXBException {
         JAXBContext jc = JAXBContext.newInstance(World.class);
         Unmarshaller u = jc.createUnmarshaller();
         InputStream input;
         File f;
-
         if (username != null) {
             f = new File(username + "-world.xml");
-            if (f.exists()){
+            if (f.exists()) {
                 input = new FileInputStream(f);
             } else {
                 input = getClass().getClassLoader().getResourceAsStream("world.xml");
@@ -33,44 +32,91 @@ public class Services {
         return w;
     }
 
-    public void saveWorldToXml(World world, String username) throws JAXBException,IOException {
+    public void saveWorldToXml(World world, String username) throws JAXBException,IOException,IllegalArgumentException {
+        if (username==null) throw new IllegalArgumentException("Nom de l'utilisateur null");
         Marshaller marsh = JAXBContext.newInstance(World.class).createMarshaller();
         FileOutputStream fos = new FileOutputStream(username + "-world.xml");
         marsh.marshal(world, fos);
         fos.close();
     }
 
-    public World getWorld(String username) throws IOException,JAXBException {
-        return readWorldFromXml(username);
+    public World getWorld(String username) throws IOException, JAXBException,IllegalArgumentException {
+        World world = readWorldFromXml(username);
+        if (world.getLastupdate() != 0){
+            long timeSinseUpdate = System.currentTimeMillis()-world.getLastupdate();
+            System.out.println(timeSinseUpdate);
+            for (ProductType p: world.getProducts().getProduct()) {
+                if (p.isManagerUnlocked()){
+                    int qttProduite = (int) ((timeSinseUpdate-p.getTimeleft())/p.getVitesse());
+                    int reste = (int) ((timeSinseUpdate-p.getTimeleft())%p.getVitesse());
+
+                    System.out.println(qttProduite);
+                    System.out.println(reste);
+
+                } else {
+                    if (p.getTimeleft() != 0 && p.getTimeleft()<timeSinseUpdate) {
+                        p.setTimeleft(0);
+                        world.setMoney(world.getMoney()+p.getQuantite()*p.getRevenu());
+                    }
+                    else {
+                        p.setTimeleft(p.getTimeleft()-timeSinseUpdate);
+                    }
+                }
+            }
+            world.setLastupdate(System.currentTimeMillis());
+            saveWorldToXml(world,username);
+        } else {
+            world.setLastupdate(System.currentTimeMillis());
+        }
+        return world;
     }
 
-    public Boolean updateProduct(String username, ProductType newProduct) throws IOException,JAXBException {
+    public Boolean updateProduct(String username, ProductType newProduct) throws IOException, JAXBException {
         World world = getWorld(username);
+
         ProductType product = world.getProducts().getProduct(newProduct.getId());
-        if(product ==null){ return false;}
+        if (product == null) {
+            return false;
+        }
 
         int qtchange = newProduct.getQuantite() - product.getQuantite();
-        if(qtchange >0){
-            //TODO: Changer la quantité de produit et soustraire l'argent du joueur
+        if (qtchange > 0) {
+            // Coût total de l'achat des produits de l'utilisateur
+            double totalAchat = newProduct.getCout()*(1-Math.pow(newProduct.getCroissance(),qtchange))/(1-newProduct.getCroissance());
+
+            // On vérifie si le joueur possède bien suffisament d'argent pour effectuer l'achat
+            if (totalAchat < world.getMoney()) return false;
+
+            world.setMoney(world.getMoney()-totalAchat);
+        } else {
+            // Met en production un produit
+            product.setTimeleft(product.getVitesse());
         }
-        else {
-            //TODO: Initialiser le product.timeleft et lancer la production d'un objet
-        }
-        saveWorldToXml(world,username);
+
+        saveWorldToXml(world, username);
         return true;
 
     }
 
-    public Boolean updateManager(String username, PallierType newManager) throws IOException,JAXBException{
+    public Boolean updateManager(String username, PallierType newManager) throws IOException, JAXBException {
         World world = getWorld(username);
         PallierType manager = world.getManagers().getPallier(newManager.getName());
-        if(manager == null) return false;
+        if (manager == null) return false;
+        System.out.println("Manager Ok");
         ProductType product = world.getProducts().getProduct(manager.getIdcible());
-        if(product == null) return false;
+        if (product == null) return false;
+        System.out.println("Produit Ok");
 
-        //TODO: Effectuer l'achat du manager
+        // On vérifie la capacité d'achat de l'utilisateur puis on effectue l'achat
+        if (newManager.getSeuil()> world.getMoney()) return false;
+        System.out.println("Argent Ok");
+        world.setMoney(world.getMoney()-newManager.getSeuil());
 
-        saveWorldToXml(world,username);
+        // Débloquage du manager pour le produit donné
+        manager.setUnlocked(true);
+        product.setManagerUnlocked(true);
+
+        saveWorldToXml(world, username);
         return true;
     }
 }

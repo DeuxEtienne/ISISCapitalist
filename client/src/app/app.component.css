@@ -108,3 +108,7 @@ nav {
 .manager-text p {
   text-align: center;
 }
+
+#money {
+  font-size: 2.5rem;
+}

@@ -3,10 +3,15 @@
     <div class="logo"><img [attr.src]="server+world.logo" />
       <div>{{world.name}}</div>
     </div>
-    <div>{{ world.money | bigvalue }}</div>
+    <div id="money">{{ world.money | bigvalue }}</div>
     <div><button mat-raised-button color="primary"
         (click)="calcQtMulti()">{{ qtmulti==0 ? "Max" : "x"+qtmulti }}</button></div>
-    <div>ID du joueur</div>
+    <div>
+      <mat-form-field>
+        <mat-label>User ID</mat-label>
+        <input type="text" [(ngModel)]="username" (change)="onUsernameChanged()" matInput>    
+      </mat-form-field>
+    </div>
   </header>
   <nav>
     <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Unlocks</button></div>

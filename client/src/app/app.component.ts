@@ -14,9 +14,21 @@ export class AppComponent {
   qtmulti: number = 1;
   showManagers = false;
   badgeManagers = 0;
+  username: string;
 
-  constructor(private service: RestserviceService, private snackBar: MatSnackBar) {
+  constructor(
+    private service: RestserviceService,
+    private snackBar: MatSnackBar
+  ) {
     this.server = service.server;
+    this.username = localStorage.getItem('username');
+    if (this.username == null) {
+      this.username = Math.floor(Math.random() * 1000000000).toString();
+      localStorage.setItem('username', this.username);
+    }
+
+    this.onUsernameChanged();
+
     service.getWorld().then((world) => {
       this.world = world;
     });
@@ -28,7 +40,7 @@ export class AppComponent {
     this.world.score += prod;
     this.badgeManagers = 0;
     for (let manager of this.world.managers.pallier) {
-      if (manager.seuil < this.world.money) this.badgeManagers +=1;
+      if (manager.seuil < this.world.money && !manager.unlocked) this.badgeManagers += 1;
     }
   }
 
@@ -62,6 +74,14 @@ export class AppComponent {
     this.world.money -= manager.seuil;
     manager.unlocked = true;
     this.world.products.product[manager.idcible].managerUnlocked = true;
-    this.snackBar.open(manager.name+" just joinned your universe","", { duration: 4000})
+    this.snackBar.open(manager.name + ' just joinned your universe', '', {
+      duration: 4000,
+    });
+
+    this.service.putManager(manager);
+  }
+
+  onUsernameChanged(): void {
+    this.service.user = this.username;
   }
 }

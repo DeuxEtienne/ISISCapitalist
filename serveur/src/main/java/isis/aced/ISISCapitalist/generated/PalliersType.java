@@ -73,7 +73,7 @@ public class PalliersType {
 
     public PallierType getPallier(String name) {
         for (PallierType p: pallier){
-            if (p.name == name) {
+            if (p.getName().equals(name)) {
                 return p;
             }
         }

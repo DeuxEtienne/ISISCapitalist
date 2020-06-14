@@ -7,7 +7,7 @@
     <totalangels>0</totalangels>
     <activeangels>0</activeangels>
     <angelbonus>2</angelbonus>
-    <lastupdate>0</lastupdate>
+    <lastupdate></lastupdate>
     <products>
         <product>
             <id>1</id>
@@ -546,7 +546,7 @@
             <name>Albator</name>
             <logo>/icones/albator.jpg</logo>
             <seuil>1000</seuil>
-            <idcible>0</idcible>
+            <idcible>1</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
@@ -555,7 +555,7 @@
             <name>Capitaine Flam</name>
             <logo>/icones/capitaine_flam.jpg</logo>
             <seuil>10000</seuil>
-            <idcible>1</idcible>
+            <idcible>2</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
@@ -564,7 +564,7 @@
             <name>Leeloo</name>
             <logo>/icones/leeloo.jpg</logo>
             <seuil>50000</seuil>
-            <idcible>2</idcible>
+            <idcible>3</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
@@ -573,7 +573,7 @@
             <name>Capitaine Kirk</name>
             <logo>/icones/capitaine_kirk.jpg</logo>
             <seuil>100000</seuil>
-            <idcible>3</idcible>
+            <idcible>4</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
@@ -582,7 +582,7 @@
             <name>Yoda</name>
             <logo>/icones/yoda.jpg</logo>
             <seuil>500000</seuil>
-            <idcible>4</idcible>
+            <idcible>5</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
@@ -591,7 +591,7 @@
             <name>Le Docteur</name>
             <logo>/icones/the_doctor.jpg</logo>
             <seuil>1000000</seuil>
-            <idcible>5</idcible>
+            <idcible>6</idcible>
             <ratio>0</ratio>
             <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>

@@ -67,6 +67,7 @@ public class Webservice {
                 return Response.serverError().build();
             }
         } catch (IOException | JAXBException ex) {
+            ex.printStackTrace();
             return Response.serverError().build();
         }
     }
