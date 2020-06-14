@@ -9,7 +9,7 @@
     <div>
       <mat-form-field>
         <mat-label>User ID</mat-label>
-        <input type="text" [(ngModel)]="username" (change)="onUsernameChanged()" matInput>    
+        <input type="text" [(ngModel)]="username" (change)="onUsernameChanged()" matInput>
       </mat-form-field>
     </div>
   </header>
@@ -19,13 +19,13 @@
     <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Investors</button></div>
     <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Anget Upgrades</button></div>
     <div class="menu-item"><button class="menu-button" mat-raised-button color="primary" [matBadge]="badgeManagers"
-      [matBadgeHidden]="badgeManagers==0"
-        (click)="showManagers = !showManagers">Managers</button></div>
+        [matBadgeHidden]="badgeManagers==0" (click)="showManagers = !showManagers">Managers</button></div>
   </nav>
   <div id="products">
     <div *ngFor="let p of world.products.product as list">
       <app-product [product]="p" [qtmulti]="qtmulti" [wmoney]="world.money" [server]="server"
-        (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)"></app-product>
+        (startProduction)="onStartProduction($event)" (notifyProduction)="onProductionDone($event)"
+        (onBuy)="onBuy($event)"></app-product>
     </div>
   </div>
 

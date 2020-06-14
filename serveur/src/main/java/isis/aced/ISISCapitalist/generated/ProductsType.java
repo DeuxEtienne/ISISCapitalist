@@ -75,7 +75,6 @@ public class ProductsType {
 
     public ProductType getProduct(int id) {
         if (this.product == null) {
-            System.out.println("Product null");
             return null;
         }
         for (ProductType p: this.product){
@@ -83,7 +82,6 @@ public class ProductsType {
                 return p;
             }
         }
-        System.out.println("Product not found");
         return null;
     }
 

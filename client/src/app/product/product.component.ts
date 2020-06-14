@@ -48,11 +48,14 @@ export class ProductComponent implements OnInit {
     return this._server;
   }
 
-  @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<
-    Product
-  >();
+  @Output() startProduction: EventEmitter<Product> = new EventEmitter<Product>();
+  
+  @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
 
-  @Output() onBuy: EventEmitter<Number> = new EventEmitter<Number>();
+  @Output() onBuy: EventEmitter<{amount: Number, p: Product}> = new EventEmitter<{
+    amount: Number;
+    p: Product;
+  }>();
 
   constructor() {}
 
@@ -69,6 +72,7 @@ export class ProductComponent implements OnInit {
     }
     this._product.timeleft = this._product.vitesse;
     this.lastupdate = Date.now();
+    this.startProduction.emit(this._product);
   }
 
   calcScore(): void {
@@ -107,32 +111,34 @@ export class ProductComponent implements OnInit {
   }
 
   buy(): void {
+    let prix: number;
     switch (this._qtmulti) {
       case 1:
+        prix = this._product.cout;
         this._product.quantite += 1;
         this._product.cout = this._product.cout * this._product.croissance;
-        this.onBuy.emit(this._product.cout);
         break;
       case 10:
+        prix = this.getPrix(10);
         this._product.quantite += 10;
         this._product.cout =
-        this._product.cout * this._product.croissance ** 10;
-        this.onBuy.emit(this.getPrix(10));
+          this._product.cout * this._product.croissance ** 10;
         break;
       case 100:
+        prix = this.getPrix(100);
         this._product.quantite += 10;
         this._product.cout =
-        this._product.cout * this._product.croissance ** 10;
-        this.onBuy.emit(this.getPrix(100));
+          this._product.cout * this._product.croissance ** 10;
         break;
       case 0:
         let qtt = this.calcMaxCanBuy();
+        prix = this.getPrix(qtt);
         this._product.quantite += qtt;
         this._product.cout =
-        this._product.cout * this._product.croissance ** qtt;
-        this.onBuy.emit(this.getPrix(qtt));
+          this._product.cout * this._product.croissance ** qtt;
         break;
     }
+    this.onBuy.emit({ amount: prix, p: this._product });
   }
 
   calcMaxCanBuy(): number {

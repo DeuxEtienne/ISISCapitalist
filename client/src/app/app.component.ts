@@ -34,6 +34,10 @@ export class AppComponent {
     });
   }
 
+  onStartProduction(p: Product): void {
+    this.service.putProduct(p);
+  }
+
   onProductionDone(p: Product): void {
     let prod = p.revenu * p.quantite;
     this.world.money += prod;
@@ -63,8 +67,11 @@ export class AppComponent {
     }
   }
 
-  onBuy(amount: number): void {
-    if (this.world.money >= amount) this.world.money -= amount;
+  onBuy(obj: {amount: number, p: Product}): void {
+    if (this.world.money >= obj.amount){
+      this.world.money -= obj.amount;
+      this.service.putProduct(obj.p);
+    }
   }
 
   hireManager(manager: Pallier): void {

@@ -57,7 +57,6 @@ export class RestserviceService {
   }
 
   private setHeaders(user: string): HttpHeaders {
-    console.log(user);
     return new HttpHeaders({ 'X-User': user });
   }
 }
