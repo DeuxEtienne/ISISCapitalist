@@ -72,13 +72,16 @@ export class ProductComponent implements OnInit {
     }
     this._product.timeleft = this._product.vitesse;
     this.lastupdate = Date.now();
-    this.startProduction.emit(this._product);
+    if (!this._product.managerUnlocked){
+      this.startProduction.emit(this._product);
+    }
   }
 
   calcScore(): void {
     if (this._product.timeleft > 0) {
       this._product.timeleft =
         this._product.timeleft - (Date.now() - this.lastupdate);
+      this.lastupdate = Date.now();
       if (this._product.timeleft <= 0) {
         if (this._product.managerUnlocked) {
           this.startFabrication();
@@ -93,6 +96,8 @@ export class ProductComponent implements OnInit {
             this._product.vitesse) *
           100;
       }
+    } else if (this._product.managerUnlocked) {
+      this.startFabrication();
     }
   }
 

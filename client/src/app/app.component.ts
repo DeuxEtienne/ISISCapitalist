@@ -44,7 +44,8 @@ export class AppComponent {
     this.world.score += prod;
     this.badgeManagers = 0;
     for (let manager of this.world.managers.pallier) {
-      if (manager.seuil < this.world.money && !manager.unlocked) this.badgeManagers += 1;
+      if (manager.seuil < this.world.money && !manager.unlocked)
+        this.badgeManagers += 1;
     }
   }
 
@@ -67,8 +68,8 @@ export class AppComponent {
     }
   }
 
-  onBuy(obj: {amount: number, p: Product}): void {
-    if (this.world.money >= obj.amount){
+  onBuy(obj: { amount: number; p: Product }): void {
+    if (this.world.money >= obj.amount) {
       this.world.money -= obj.amount;
       this.service.putProduct(obj.p);
     }
@@ -76,16 +77,24 @@ export class AppComponent {
 
   hireManager(manager: Pallier): void {
     if (this.world.money < manager.seuil) {
-      return;
+      return ;
     }
-    this.world.money -= manager.seuil;
-    manager.unlocked = true;
-    this.world.products.product[manager.idcible].managerUnlocked = true;
-    this.snackBar.open(manager.name + ' just joinned your universe', '', {
-      duration: 4000,
-    });
 
-    this.service.putManager(manager);
+    this.service
+      .putManager(manager)
+      .then(() => {
+        this.world.money -= manager.seuil;
+        manager.unlocked = true;
+        this.world.products.product[manager.idcible].managerUnlocked = true;
+        this.snackBar.open(manager.name + ' just joinned your universe', '', {
+          duration: 4000,
+        });
+      })
+      .catch(() => {
+        this.snackBar.open('An error as occured', '', {
+          duration: 4000,
+        });
+      });
   }
 
   onUsernameChanged(): void {

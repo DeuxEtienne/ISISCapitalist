@@ -36,7 +36,7 @@
         <div class="logo"><img [attr.src]="server+manager.logo"></div>
         <div class="manager-text">
           <p>{{ manager.name}}</p>
-          <p>{{ world.products.product[manager.idcible].name }}</p>
+          <p>{{ world.products.product[manager.idcible-1].name }}</p>
           <p>{{ manager.seuil }}</p>
         </div>
         <button [disabled]="!(world.money>=manager.seuil)" (click)="hireManager(manager)" mat-raised-button

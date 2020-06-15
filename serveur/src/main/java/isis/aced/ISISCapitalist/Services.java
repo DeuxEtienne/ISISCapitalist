@@ -43,42 +43,7 @@ public class Services {
     public World getWorld(String username) throws IOException, JAXBException, IllegalArgumentException {
         World world = readWorldFromXml(username);
         if (world.getLastupdate() != 0) {
-            long timeSinseUpdate = System.currentTimeMillis() - world.getLastupdate();
-
-            ProductType p = world.getProducts().getProduct(1);
-            if (p.getTimeleft() == 0) {
-            } else if (p.getTimeleft() < timeSinseUpdate) {
-                System.out.println("Production done\n");
-                p.setTimeleft(0);
-                world.setMoney(world.getMoney() + p.getQuantite() * p.getRevenu());
-            } else {
-                System.out.println("Time since update\t" + timeSinseUpdate);
-                System.out.println("Time left\t\t" + p.getTimeleft());
-                System.out.println("Time left\t\t" + (p.getTimeleft() - timeSinseUpdate) + "\n");
-                p.setTimeleft(p.getTimeleft() - timeSinseUpdate);
-            }
-
-            /*for (ProductType p: world.getProducts().getProduct()) {
-                if (p.isManagerUnlocked()){
-                    int qttProduite = (int) ((timeSinseUpdate-p.getTimeleft())/p.getVitesse());
-                    int reste = (int) ((timeSinseUpdate-p.getTimeleft())%p.getVitesse());
-
-                    System.out.println(qttProduite);
-                    System.out.println(reste);
-
-                } else {
-                    System.out.println("temps restant in\t"+(p.getTimeleft()));
-                    System.out.println("temps écoulé\t\t"+timeSinseUpdate);
-                    if (p.getTimeleft() == 0){}
-                    else if (p.getTimeleft()<timeSinseUpdate) {
-                        p.setTimeleft(0);
-                        world.setMoney(world.getMoney()+p.getQuantite()*p.getRevenu());
-                    } else {
-                        p.setTimeleft(p.getTimeleft()-timeSinseUpdate);
-                    }
-                    System.out.println("temps restant out\t"+p.getTimeleft()+"\n");
-                }
-            }*/
+            calcProduction(world);
             world.setLastupdate(System.currentTimeMillis());
         } else {
             world.setLastupdate(System.currentTimeMillis());
@@ -100,7 +65,7 @@ public class Services {
             double totalAchat = product.getCout() * (1 - Math.pow(product.getCroissance(), qtchange)) / (1 - product.getCroissance());
 
             // On vérifie si le joueur possède bien suffisament d'argent pour effectuer l'achat
-            if (totalAchat < world.getMoney()) return false;
+            if (totalAchat > world.getMoney()) return false;
 
             world.setMoney(world.getMoney() - totalAchat);
             product.setQuantite(newProduct.getQuantite());
@@ -111,21 +76,17 @@ public class Services {
 
         saveWorldToXml(world, username);
         return true;
-
     }
 
     public Boolean updateManager(String username, PallierType newManager) throws IOException, JAXBException {
         World world = getWorld(username);
         PallierType manager = world.getManagers().getPallier(newManager.getName());
         if (manager == null) return false;
-        System.out.println("Manager Ok");
         ProductType product = world.getProducts().getProduct(manager.getIdcible());
         if (product == null) return false;
-        System.out.println("Produit Ok");
 
         // On vérifie la capacité d'achat de l'utilisateur puis on effectue l'achat
         if (newManager.getSeuil() > world.getMoney()) return false;
-        System.out.println("Argent Ok");
         world.setMoney(world.getMoney() - newManager.getSeuil());
 
         // Débloquage du manager pour le produit donné
@@ -134,5 +95,35 @@ public class Services {
 
         saveWorldToXml(world, username);
         return true;
+    }
+
+    private void calcProduction(World w) {
+        long timeSinseUpdate = System.currentTimeMillis() - w.getLastupdate();
+
+        for (ProductType p: w.getProducts().getProduct()) {
+            int qttProduite;
+            if (p.isManagerUnlocked()){
+                qttProduite = (int) ((timeSinseUpdate-p.getTimeleft()+p.getVitesse())/p.getVitesse());
+                if (qttProduite==0) {
+                    p.setTimeleft(p.getTimeleft()-timeSinseUpdate);
+                } else {
+                    p.setTimeleft((timeSinseUpdate-p.getTimeleft())%p.getVitesse());
+                }
+
+            } else {
+                qttProduite=0;
+                if (p.getTimeleft() == 0){}
+                else if (p.getTimeleft()<timeSinseUpdate) {
+                    qttProduite=1;
+                    p.setTimeleft(0);
+                    w.setMoney(w.getMoney()+p.getQuantite()*p.getRevenu());
+                } else {
+                    p.setTimeleft(p.getTimeleft()-timeSinseUpdate);
+                }
+            }
+            double revenus = qttProduite * p.getQuantite() * p.getRevenu();
+            revenus += revenus * (w.getActiveangels() * w.getAngelbonus() / 100);
+            w.setMoney(w.getMoney()+revenus);
+        }
     }
 }
