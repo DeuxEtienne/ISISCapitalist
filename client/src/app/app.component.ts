@@ -85,7 +85,7 @@ export class AppComponent {
       .then(() => {
         this.world.money -= manager.seuil;
         manager.unlocked = true;
-        this.world.products.product[manager.idcible].managerUnlocked = true;
+        this.world.products.product[manager.idcible-1].managerUnlocked = true;
         this.snackBar.open(manager.name + ' just joinned your universe', '', {
           duration: 4000,
         });

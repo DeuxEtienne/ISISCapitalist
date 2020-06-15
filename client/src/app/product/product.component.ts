@@ -12,8 +12,8 @@ export class ProductComponent implements OnInit {
   private _qtmulti: number;
   private _wmoney: number;
   private _server: string;
-  progressbarvalue: number;
-  lastupdate: number;
+  progressbarvalue = 0;
+  lastupdate = Date.now();
 
   @Input()
   set product(value: Product) {
@@ -46,6 +46,11 @@ export class ProductComponent implements OnInit {
 
   get server(): string {
     return this._server;
+  }
+
+  @Input()
+  set managerUnlocked(value: boolean) {
+    if (value) this._product.managerUnlocked = value;
   }
 
   @Output() startProduction: EventEmitter<Product> = new EventEmitter<Product>();
@@ -93,8 +98,7 @@ export class ProductComponent implements OnInit {
       } else {
         this.progressbarvalue =
           ((this._product.vitesse - this._product.timeleft) /
-            this._product.vitesse) *
-          100;
+            this._product.vitesse) * 100;
       }
     } else if (this._product.managerUnlocked) {
       this.startFabrication();

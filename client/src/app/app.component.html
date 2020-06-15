@@ -24,8 +24,8 @@
   <div id="products">
     <div *ngFor="let p of world.products.product as list">
       <app-product [product]="p" [qtmulti]="qtmulti" [wmoney]="world.money" [server]="server"
-        (startProduction)="onStartProduction($event)" (notifyProduction)="onProductionDone($event)"
-        (onBuy)="onBuy($event)"></app-product>
+        [managerUnlocked]="p.managerUnlocked" (startProduction)="onStartProduction($event)"
+        (notifyProduction)="onProductionDone($event)" (onBuy)="onBuy($event)"></app-product>
     </div>
   </div>
 

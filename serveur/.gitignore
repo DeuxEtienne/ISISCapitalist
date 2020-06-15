@@ -29,3 +29,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Monde des utilisateurs
+*-world.xml
