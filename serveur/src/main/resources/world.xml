@@ -421,8 +421,8 @@
 	<allunlocks>
         <pallier>
             <name>Expansion de l'univers</name>
-            <logo>/icones/expansion-univers.jpg</logo>
-            <seuil>5000000000</seuil>
+            <logo>/icones/expansion-univers.jpeg</logo>
+            <seuil>250</seuil>
             <idcible>0</idcible>
             <ratio>2</ratio>
             <typeratio>vitesse</typeratio>
@@ -431,19 +431,10 @@
 		<pallier>
             <name>Infini intersidéral</name>
             <logo>/icones/infini.jpg</logo>
-            <seuil>10000000000</seuil>
+            <seuil>500</seuil>
             <idcible>0</idcible>
             <ratio>3</ratio>
-            <typeratio>gain</typeratio>
-            <unlocked>false</unlocked>
-        </pallier>
-		<pallier>
-            <name>Pouvoir des anges</name>
-            <logo>/icones/pouvoir.jpg</logo>
-            <seuil>100000000000</seuil>
-            <idcible>-1</idcible>
-            <ratio>2</ratio>
-            <typeratio>ange</typeratio>
+            <typeratio>vitesse</typeratio>
             <unlocked>false</unlocked>
         </pallier>
     </allunlocks>
@@ -491,6 +482,15 @@
             <idcible>5</idcible>
             <ratio>3</ratio>
             <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+            <name>Pouvoir des anges</name>
+            <logo>/icones/pouvoir.jpg</logo>
+            <seuil>100000000000</seuil>
+            <idcible>-1</idcible>
+            <ratio>2</ratio>
+            <typeratio>ange</typeratio>
             <unlocked>false</unlocked>
         </pallier>
 		<pallier>

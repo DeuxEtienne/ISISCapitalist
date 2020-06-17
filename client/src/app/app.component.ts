@@ -1,7 +1,13 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  ViewChildren,
+  QueryList,
+} from '@angular/core';
 import { World, Product, Pallier } from './models/world';
 import { RestserviceService } from './services/restservice/restservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProductComponent } from './product/product.component';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +17,32 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AppComponent {
   world: World = new World();
   server: string;
+  username: string;
   qtmulti: number = 1;
+  @ViewChildren(ProductComponent) productComponents: QueryList<
+    ProductComponent
+  >;
+
   showManagers = false;
   badgeManagers = 0;
-  username: string;
+
+  showUnlocks = false;
+
+  showUpgrades = false;
+  badgeUpgrades = 0;
+
+  showAngelUpgrades = false;
+  badgeAngelUpgrades = 0;
+
+  showInvestors = false;
+
+  @HostListener('window:keydown.esc') onKeyDown() {
+    this.showManagers = false;
+    this.showUnlocks = false;
+    this.showUpgrades = false;
+    this.showAngelUpgrades = false;
+    this.showInvestors = false;
+  }
 
   constructor(
     private service: RestserviceService,
@@ -72,12 +100,30 @@ export class AppComponent {
     if (this.world.money >= obj.amount) {
       this.world.money -= obj.amount;
       this.service.putProduct(obj.p);
+
+      let products = this.world.products.product;
+
+      // On récupère la quantité minimale de produits
+      let qttMini = products[0].quantite;
+      for (let i = 1; i < products.length - 1; i++) {
+        if (products[i].quantite < qttMini) {
+          qttMini = products[i].quantite;
+        }
+      }
+      for(let p of this.world.allunlocks.pallier) {
+        if (p.seuil < qttMini && !p.unlocked) {
+          this.productComponents.forEach(product => product.calcUpgrade(p));
+          this.snackBar.open('You just unlocked '+p.name, '', {
+            duration: 4000,
+          });
+        }
+      }
     }
   }
 
   hireManager(manager: Pallier): void {
     if (this.world.money < manager.seuil) {
-      return ;
+      return;
     }
 
     this.service
@@ -85,7 +131,7 @@ export class AppComponent {
       .then(() => {
         this.world.money -= manager.seuil;
         manager.unlocked = true;
-        this.world.products.product[manager.idcible-1].managerUnlocked = true;
+        this.world.products.product[manager.idcible - 1].managerUnlocked = true;
         this.snackBar.open(manager.name + ' just joinned your universe', '', {
           duration: 4000,
         });
@@ -99,5 +145,25 @@ export class AppComponent {
 
   onUsernameChanged(): void {
     this.service.user = this.username;
+  }
+
+  togleManager(): void {
+    this.showManagers;
+    this.showUnlocks;
+  }
+
+  nextUnlocks(product?: Product): Pallier {
+    let pallier: Pallier[];
+    if (product == null) {
+      pallier = this.world.allunlocks.pallier;
+    } else {
+      pallier = product.palliers.pallier;
+    }
+    for (let i = 0; i < pallier.length - 1; i++) {
+      if (!pallier[i].unlocked) {
+        return pallier[i];
+      }
+    }
+    return null;
   }
 }

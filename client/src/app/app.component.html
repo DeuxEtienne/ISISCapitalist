@@ -14,12 +14,16 @@
     </div>
   </header>
   <nav>
-    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Unlocks</button></div>
-    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Cash Upgrades</button></div>
-    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Investors</button></div>
-    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary">Anget Upgrades</button></div>
     <div class="menu-item"><button class="menu-button" mat-raised-button color="primary" [matBadge]="badgeManagers"
-        [matBadgeHidden]="badgeManagers==0" (click)="showManagers = !showManagers">Managers</button></div>
+        [matBadgeHidden]="badgeManagers==0" (click)="showManagers=!showManagers">Managers</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary"
+        (click)="showUnlocks=!showUnlocks">Unlocks</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary"
+        (click)="showUpgrades=!showUpgrades">Cash Upgrades</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary"
+        (click)="showAngelUpgrades=!showAngelUpgrades">Anget Upgrades</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary"
+        (click)="showInvestors=!showInvestors">Investors</button></div>
   </nav>
   <div id="products">
     <div *ngFor="let p of world.products.product as list">
@@ -30,11 +34,12 @@
   </div>
 
   <div class="modal" *ngIf="showManagers">
+    <button class="close-button" mat-button (click)="showManagers=false">X</button>
     <h1>Managers make you feel better !</h1>
     <div *ngFor="let manager of world.managers.pallier">
-      <div *ngIf="!manager.unlocked" class="manager-layout">
+      <div *ngIf="!manager.unlocked" class="modal-layout">
         <div class="logo"><img [attr.src]="server+manager.logo"></div>
-        <div class="manager-text">
+        <div class="modal-text">
           <p>{{ manager.name}}</p>
           <p>{{ world.products.product[manager.idcible-1].name }}</p>
           <p>{{ manager.seuil }}</p>
@@ -43,5 +48,30 @@
           color="primary">Hire !</button>
       </div>
     </div>
+  </div>
+
+  <div class="modal" *ngIf="showUnlocks">
+    <button class="close-button" mat-button (click)="showUnlocks=false">X</button>
+    <h1>Unlock your full potential !</h1>
+    <ng-container *ngFor="let product of world.products.product">
+      <ng-container *ngFor="let p of [nextUnlocks(product)];">
+        <div *ngIf="p!=null" class="modal-layout">
+          <div class="logo"><img [attr.src]="server+p.logo"></div>
+          <div class="modal-text">
+            <p>{{ p.name }}</p>
+            <p>{{ product.name }} {{ p.typeratio }} x{{ p.ratio }}</p>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+      <ng-container *ngFor="let p of [nextUnlocks()];">
+        <div *ngIf="p!=null" class="modal-layout">
+          <div class="logo"><img [attr.src]="server+p.logo"></div>
+          <div class="modal-text">
+            <p>{{ p.name }}</p>
+            <p>L'univers {{ p.typeratio }} x{{ p.ratio }}</p>
+          </div>
+        </div>
+      </ng-container>
   </div>
 </div>

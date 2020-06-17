@@ -56,6 +56,7 @@ nav {
   width: 6rem;
   height: 6rem;
   border-radius: 100%;
+  object-fit: cover;
 }
 
 .logo > div {
@@ -69,11 +70,11 @@ nav {
   position: absolute;
   left: 18rem;
   top: 10rem;
-  max-height: 35rem;
-  overflow: scroll;
+  bottom: 1rem;
+  overflow-y: scroll;
   background-color: rgb(31, 31, 51);
-  padding-left: 10rem;
-  padding-right: 10rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
   padding-bottom: 5rem;
   padding-top: 5rem;
 }
@@ -82,7 +83,15 @@ nav {
   text-align: center;
 }
 
-.manager-layout {
+.modal > .close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 5px;
+  font-size: 1.5rem;
+}
+
+.modal-layout {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -94,19 +103,23 @@ nav {
   margin: 1rem;
 }
 
-.manager-layout button {
+.modal-layout button {
   margin: auto;
   margin-right: 2rem;
 }
 
-.manager-text {
+.modal-text {
   margin: auto;
   display: flex;
   flex-direction: column;
 }
 
-.manager-text p {
+.modal-text p {
   text-align: center;
+}
+
+.modal-text > p:first-child {
+  font-size: 1.5rem;
 }
 
 #money {

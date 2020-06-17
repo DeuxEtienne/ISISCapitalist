@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../models/world';
+import { Product, Pallier } from '../models/world';
 import { RestserviceService } from '../services/restservice/restservice.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product',
@@ -13,11 +14,12 @@ export class ProductComponent implements OnInit {
   private _wmoney: number;
   private _server: string;
   progressbarvalue = 0;
-  lastupdate = Date.now();
+  lastupdate: number;
 
   @Input()
   set product(value: Product) {
     this._product = value;
+    this.lastupdate = Date.now();
   }
 
   get product(): Product {
@@ -53,16 +55,23 @@ export class ProductComponent implements OnInit {
     if (value) this._product.managerUnlocked = value;
   }
 
-  @Output() startProduction: EventEmitter<Product> = new EventEmitter<Product>();
-  
-  @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<Product>();
+  @Output() startProduction: EventEmitter<Product> = new EventEmitter<
+    Product
+  >();
 
-  @Output() onBuy: EventEmitter<{amount: Number, p: Product}> = new EventEmitter<{
+  @Output() notifyProduction: EventEmitter<Product> = new EventEmitter<
+    Product
+  >();
+
+  @Output() onBuy: EventEmitter<{
+    amount: Number;
+    p: Product;
+  }> = new EventEmitter<{
     amount: Number;
     p: Product;
   }>();
 
-  constructor() {}
+  constructor(private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     setInterval(() => {
@@ -77,7 +86,7 @@ export class ProductComponent implements OnInit {
     }
     this._product.timeleft = this._product.vitesse;
     this.lastupdate = Date.now();
-    if (!this._product.managerUnlocked){
+    if (!this._product.managerUnlocked) {
       this.startProduction.emit(this._product);
     }
   }
@@ -98,7 +107,8 @@ export class ProductComponent implements OnInit {
       } else {
         this.progressbarvalue =
           ((this._product.vitesse - this._product.timeleft) /
-            this._product.vitesse) * 100;
+            this._product.vitesse) *
+          100;
       }
     } else if (this._product.managerUnlocked) {
       this.startFabrication();
@@ -135,9 +145,9 @@ export class ProductComponent implements OnInit {
         break;
       case 100:
         prix = this.getPrix(100);
-        this._product.quantite += 10;
+        this._product.quantite += 100;
         this._product.cout =
-          this._product.cout * this._product.croissance ** 10;
+          this._product.cout * this._product.croissance ** 100;
         break;
       case 0:
         let qtt = this.calcMaxCanBuy();
@@ -148,6 +158,14 @@ export class ProductComponent implements OnInit {
         break;
     }
     this.onBuy.emit({ amount: prix, p: this._product });
+    this._product.palliers.pallier.forEach((p) => {
+      if (!p.unlocked) {
+        this.calcUpgrade(p);
+        this.snackBar.open('You just unlocked the '+this._product.name+' upgrade '+p.name, '', {
+          duration: 4000,
+        });
+      }
+    });
   }
 
   calcMaxCanBuy(): number {
@@ -167,5 +185,21 @@ export class ProductComponent implements OnInit {
       (this._product.cout * (1 - this._product.croissance ** quantite)) /
       (1 - this._product.croissance)
     );
+  }
+
+  calcUpgrade(p: Pallier): void {
+    // Si le seuil du pallier est dépassé, on met à jour le produit
+    if (p.seuil <= this._product.quantite) {
+      switch (p.typeratio) {
+        case 'vitesse':
+          this._product.vitesse = this._product.vitesse / p.ratio;
+          this._product.timeleft = this._product.timeleft / p.ratio;
+          break;
+        case 'gain':
+          this._product.revenu = this._product.revenu * p.ratio;
+          break;
+      }
+      p.unlocked = true;
+    }
   }
 }

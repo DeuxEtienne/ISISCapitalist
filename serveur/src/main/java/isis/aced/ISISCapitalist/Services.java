@@ -2,6 +2,7 @@ package isis.aced.ISISCapitalist;
 
 import isis.aced.ISISCapitalist.generated.PallierType;
 import isis.aced.ISISCapitalist.generated.ProductType;
+import isis.aced.ISISCapitalist.generated.ProductsType;
 import isis.aced.ISISCapitalist.generated.World;
 
 import javax.xml.bind.JAXBContext;
@@ -9,6 +10,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
+import java.util.List;
 
 public class Services {
     public World readWorldFromXml(String username) throws IOException, JAXBException {
@@ -56,7 +58,7 @@ public class Services {
         World world = getWorld(username);
         ProductType product = world.getProducts().getProduct(newProduct.getId());
 
-        if (product == null || newProduct.getQuantite()<0) {
+        if (product == null || newProduct.getQuantite() < 0) {
             return false;
         }
         int qtchange = newProduct.getQuantite() - product.getQuantite();
@@ -69,6 +71,22 @@ public class Services {
 
             world.setMoney(world.getMoney() - totalAchat);
             product.setQuantite(newProduct.getQuantite());
+
+            // Application des unlocks du produit
+            for (PallierType p : product.getPalliers().getPallier()) {
+                if (!p.isUnlocked()) this.calcUpgrade(p, product);
+            }
+
+            // Recherche du débloquage de unlocks globaux
+            List<ProductType> products = world.getProducts().getProduct();
+            int qttMini = products.get(0).getQuantite();
+            for (ProductType p: products) {
+                if (p.getQuantite() < qttMini) qttMini = p.getQuantite();
+            }
+            for (PallierType pallier: world.getAllunlocks().getPallier()) {
+                if (!pallier.isUnlocked() && pallier.getSeuil()<qttMini)
+                    calcUpgrade(pallier, product);
+            }
         } else {
             // Met en production un produit
             if (product.getTimeleft() <= 0) product.setTimeleft(product.getVitesse());
@@ -100,30 +118,45 @@ public class Services {
     private void calcProduction(World w) {
         long timeSinseUpdate = System.currentTimeMillis() - w.getLastupdate();
 
-        for (ProductType p: w.getProducts().getProduct()) {
+        for (ProductType p : w.getProducts().getProduct()) {
             int qttProduite;
-            if (p.isManagerUnlocked()){
-                qttProduite = (int) ((timeSinseUpdate-p.getTimeleft()+p.getVitesse())/p.getVitesse());
-                if (qttProduite==0) {
-                    p.setTimeleft(p.getTimeleft()-timeSinseUpdate);
+            if (p.isManagerUnlocked()) {
+                qttProduite = (int) ((timeSinseUpdate - p.getTimeleft() + p.getVitesse()) / p.getVitesse());
+                if (qttProduite == 0) {
+                    p.setTimeleft(p.getTimeleft() - timeSinseUpdate);
                 } else {
-                    p.setTimeleft((timeSinseUpdate-p.getTimeleft())%p.getVitesse());
+                    p.setTimeleft((timeSinseUpdate - p.getTimeleft()) % p.getVitesse());
                 }
 
             } else {
-                qttProduite=0;
-                if (p.getTimeleft() == 0){}
-                else if (p.getTimeleft()<timeSinseUpdate) {
-                    qttProduite=1;
+                qttProduite = 0;
+                if (p.getTimeleft() == 0) {
+                } else if (p.getTimeleft() < timeSinseUpdate) {
+                    qttProduite = 1;
                     p.setTimeleft(0);
-                    w.setMoney(w.getMoney()+p.getQuantite()*p.getRevenu());
+                    w.setMoney(w.getMoney() + p.getQuantite() * p.getRevenu());
                 } else {
-                    p.setTimeleft(p.getTimeleft()-timeSinseUpdate);
+                    p.setTimeleft(p.getTimeleft() - timeSinseUpdate);
                 }
             }
             double revenus = qttProduite * p.getQuantite() * p.getRevenu();
             revenus += revenus * (w.getActiveangels() * w.getAngelbonus() / 100);
-            w.setMoney(w.getMoney()+revenus);
+            w.setMoney(w.getMoney() + revenus);
+        }
+    }
+
+    private void calcUpgrade(PallierType p, ProductType product) {
+        if (p.getSeuil() <= product.getQuantite()) {
+            switch (p.getTyperatio().value()) {
+                case "vitesse":
+                    product.setVitesse((int) (product.getVitesse() / p.getRatio()));
+                    product.setTimeleft((int) (product.getTimeleft() / p.getRatio()));
+                    break;
+                case "gain":
+                    product.setRevenu(product.getRevenu() * p.getRatio());
+                    break;
+            }
+            p.setUnlocked(true);
         }
     }
 }
