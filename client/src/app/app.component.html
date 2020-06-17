@@ -74,4 +74,20 @@
         </div>
       </ng-container>
   </div>
+  <div class="modal" *ngIf="showUpgrades">
+    <button class="close-button" mat-button (click)="showUpgrades=false">X</button>
+    <h1>Upgrade to the next level !</h1>
+    <div *ngFor="let upgrade of world.upgrades.pallier">
+      <div *ngIf="!upgrade.unlocked" class="modal-layout">
+        <div class="logo"><img [attr.src]="server+upgrade.logo"></div>
+        <div class="modal-text">
+          <p>{{ upgrade.name}}</p>
+          <p>{{ world.products.product[upgrade.idcible-1].name }}</p>
+          <p>{{ upgrade.seuil }}</p>
+        </div>
+        <button [disabled]="!(world.money>=upgrade.seuil)" (click)="buyUpgrade(upgrade)" mat-raised-button
+          color="primary">Hire !</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -43,8 +43,8 @@ export class RestserviceService {
       .put(this.server + '/adventureisis/generic/manager', manager, {
         headers: this.setHeaders(this._user),
       })
-      .toPromise().
-      catch(this.handleError);
+      .toPromise()
+      .catch(this.handleError);
   }
 
   putProduct(product: Product): Promise<Response> {
@@ -52,8 +52,17 @@ export class RestserviceService {
       .put(this.server + '/adventureisis/generic/product', product, {
         headers: this.setHeaders(this._user),
       })
-      .toPromise().
-      catch(this.handleError);
+      .toPromise()
+      .catch(this.handleError);
+  }
+
+  putUpgrade(upgrade: Pallier): Promise<Response> {
+    return this.http
+      .put(this.server + '/adventureisis/generic/upgrade', upgrade, {
+        headers: this.setHeaders(this._user),
+      })
+      .toPromise()
+      .catch(this.handleError);
   }
 
   private setHeaders(user: string): HttpHeaders {

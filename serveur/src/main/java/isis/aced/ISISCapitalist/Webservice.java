@@ -71,4 +71,25 @@ public class Webservice {
             return Response.serverError().build();
         }
     }
+
+    @PUT
+    @Path("upgrade")
+    @Consumes({org.springframework.http.MediaType.APPLICATION_XML_VALUE, org.springframework.http.MediaType.APPLICATION_JSON_VALUE})
+    public Response putUpgrade(@Context HttpServletRequest request, @RequestBody PallierType upgrade) {
+
+        String username = request.getHeader("X-User");
+
+        if (username == null || username == "") return Response.serverError().build();
+
+        try {
+            if (services.updateUpgrade(username, upgrade)){
+                return Response.ok(services.getWorld(username)).build();
+            } else {
+                return Response.serverError().build();
+            }
+        } catch (IOException | JAXBException ex) {
+            ex.printStackTrace();
+            return Response.serverError().build();
+        }
+    }
 }

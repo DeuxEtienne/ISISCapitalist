@@ -104,12 +104,42 @@ public class Services {
         if (product == null) return false;
 
         // On vérifie la capacité d'achat de l'utilisateur puis on effectue l'achat
-        if (newManager.getSeuil() > world.getMoney()) return false;
-        world.setMoney(world.getMoney() - newManager.getSeuil());
+        if (manager.getSeuil() > world.getMoney()) return false;
+        world.setMoney(world.getMoney() - manager.getSeuil());
 
         // Débloquage du manager pour le produit donné
         manager.setUnlocked(true);
         product.setManagerUnlocked(true);
+
+        saveWorldToXml(world, username);
+        return true;
+    }
+
+    public Boolean updateUpgrade(String username, PallierType newUpgrade) throws IOException, JAXBException {
+        World world = getWorld(username);
+        PallierType upgrade = world.getUpgrades().getPallier(newUpgrade.getName());
+        if (upgrade == null) return false;
+        if (upgrade.isUnlocked()) return false;
+        ProductType product = world.getProducts().getProduct(upgrade.getIdcible());
+        if (product == null) return false;
+
+        // On vérifie la capacité d'achat de l'utilisateur puis on effectue l'achat
+        if (upgrade.getSeuil() > world.getMoney()) return false;
+        world.setMoney(world.getMoney() - upgrade.getSeuil());
+        switch (upgrade.getTyperatio().value()) {
+            case "gain":
+                product.setRevenu(product.getRevenu()*upgrade.getRatio());
+                break;
+            case "vitesse":
+                product.setVitesse((int) (product.getVitesse()/upgrade.getRatio()));
+                product.setTimeleft((int) (product.getTimeleft()/upgrade.getRatio()));
+                break;
+            case "ange":
+                return false;
+            default:
+                return false;
+        }
+        upgrade.setUnlocked(true);
 
         saveWorldToXml(world, username);
         return true;
@@ -134,7 +164,6 @@ public class Services {
                 } else if (p.getTimeleft() < timeSinseUpdate) {
                     qttProduite = 1;
                     p.setTimeleft(0);
-                    w.setMoney(w.getMoney() + p.getQuantite() * p.getRevenu());
                 } else {
                     p.setTimeleft(p.getTimeleft() - timeSinseUpdate);
                 }

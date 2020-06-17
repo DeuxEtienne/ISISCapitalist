@@ -110,10 +110,10 @@ export class AppComponent {
           qttMini = products[i].quantite;
         }
       }
-      for(let p of this.world.allunlocks.pallier) {
+      for (let p of this.world.allunlocks.pallier) {
         if (p.seuil < qttMini && !p.unlocked) {
-          this.productComponents.forEach(product => product.calcUpgrade(p));
-          this.snackBar.open('You just unlocked '+p.name, '', {
+          this.productComponents.forEach((product) => product.calcUpgrade(p));
+          this.snackBar.open('You just unlocked ' + p.name, '', {
             duration: 4000,
           });
         }
@@ -165,5 +165,49 @@ export class AppComponent {
       }
     }
     return null;
+  }
+
+  buyUpgrade(upgrade: Pallier): void {
+    if (this.world.money < upgrade.seuil) {
+      return;
+    }
+
+    this.service
+      .putUpgrade(upgrade)
+      .then(() => {
+        upgrade.unlocked = true;
+        let products: Product[];
+        if (upgrade.idcible > 0) {
+          this.productComponents.forEach((p) => {
+            if (p.product.id == upgrade.idcible) products = [p.product];
+          });
+        } else if (upgrade.idcible == 0){
+          products = [];
+          this.productComponents.forEach((p) => {
+            products.push(p.product);
+          });
+        }
+        switch (upgrade.typeratio) {
+          case 'gain':
+            for (let p of products) {
+              p.revenu = p.revenu * upgrade.ratio;
+            }
+            break;
+          case 'vitesse':
+            for (let p of products) {
+              p.vitesse = p.vitesse / upgrade.ratio;
+              p.timeleft = p.timeleft / p.timeleft;
+            }
+            break;
+          case 'ange':
+            break;
+        }
+        this.world.money -= upgrade.seuil;
+      })
+      .catch(() => {
+        this.snackBar.open('An error as occured', '', {
+          duration: 4000,
+        });
+      });
   }
 }
