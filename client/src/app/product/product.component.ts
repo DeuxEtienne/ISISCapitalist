@@ -13,6 +13,8 @@ export class ProductComponent implements OnInit {
   private _qtmulti: number;
   private _wmoney: number;
   private _server: string;
+  private _activeAngels: number;
+  private _angelBonus: number;
   progressbarvalue = 0;
   lastupdate: number;
 
@@ -53,6 +55,24 @@ export class ProductComponent implements OnInit {
   @Input()
   set managerUnlocked(value: boolean) {
     if (value) this._product.managerUnlocked = value;
+  }
+
+  @Input()
+  set activeAngels(value: number) {
+    this._activeAngels = value
+  }
+
+  get activeAngels(): number {
+    return this._activeAngels;
+  }
+
+  @Input()
+  set angelBonus(value: number) {
+    this._angelBonus = value
+  }
+
+  get angelBonus(): number {
+    return this._angelBonus
   }
 
   @Output() startProduction: EventEmitter<Product> = new EventEmitter<

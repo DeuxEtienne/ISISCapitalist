@@ -44,7 +44,26 @@ img {
 }
 
 .production {
+    display: block;
+    position: relative;
     grid-area: prod;
+    height: 100%;
+}
+
+.production > p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    color: #313151;
+    text-shadow: -1px 0 #C5CAE9, 0 1px #C5CAE9,
+    1px 0 #C5CAE9, 0 -1px #C5CAE9;
+    padding: 2px;
+}
+
+.production > mat-progress-bar{
     height: 100%;
     border-radius: 5px;
 }

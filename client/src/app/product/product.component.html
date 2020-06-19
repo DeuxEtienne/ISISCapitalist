@@ -3,7 +3,10 @@
         <img [attr.src]="server+product.logo">
         <p class="qtt">{{ product.quantite }}</p>
     </div>
-    <mat-progress-bar class="production" [value]="progressbarvalue"></mat-progress-bar>
+    <div class="production">
+        <mat-progress-bar [value]="progressbarvalue" [innerHTML]=""></mat-progress-bar>
+        <p [innerHTML]="product.revenu * product.quantite * (1 + (activeAngels * angelBonus) / 100)"></p>
+    </div>
     <button mat-flat-button color="primary" [disabled]="calcCanBuy()==0" (click)="buy()">
         <div class="achat">
             <div>
