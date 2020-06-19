@@ -3,7 +3,7 @@
     <div class="logo"><img [attr.src]="server+world.logo" />
       <div>{{world.name}}</div>
     </div>
-    <div id="money">{{ world.money | bigvalue }}</div>
+    <div id="money" [innerHTML]="world.money | bigvalue"></div>
     <div><button mat-raised-button color="primary"
         (click)="calcQtMulti()">{{ qtmulti==0 ? "Max" : "x"+qtmulti }}</button></div>
     <div>
@@ -18,10 +18,11 @@
         [matBadgeHidden]="badgeManagers==0" (click)="showManagers=!showManagers">Managers</button></div>
     <div class="menu-item"><button class="menu-button" mat-raised-button color="primary"
         (click)="showUnlocks=!showUnlocks">Unlocks</button></div>
-    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary"
-        (click)="showUpgrades=!showUpgrades">Cash Upgrades</button></div>
-    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary"
-        (click)="showAngelUpgrades=!showAngelUpgrades">Anget Upgrades</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary" [matBadge]="badgeUpgrades"
+        [matBadgeHidden]="badgeUpgrades==0" (click)="showUpgrades=!showUpgrades">Cash Upgrades</button></div>
+    <div class="menu-item"><button class="menu-button" mat-raised-button color="primary" [matBadge]="badgeAngelUpgrades"
+        [matBadgeHidden]="badgeAngelUpgrades==0" (click)="showAngelUpgrades=!showAngelUpgrades">Anget Upgrades</button>
+    </div>
     <div class="menu-item"><button class="menu-button" mat-raised-button color="primary"
         (click)="showInvestors=!showInvestors">Investors</button></div>
   </nav>
@@ -36,13 +37,14 @@
   <div class="modal" *ngIf="showManagers">
     <button class="close-button" mat-button (click)="showManagers=false">X</button>
     <h1>Managers make you feel better !</h1>
+    <hr />
     <div *ngFor="let manager of world.managers.pallier">
       <div *ngIf="!manager.unlocked" class="modal-layout">
         <div class="logo"><img [attr.src]="server+manager.logo"></div>
         <div class="modal-text">
           <p>{{ manager.name}}</p>
           <p>{{ world.products.product[manager.idcible-1].name }}</p>
-          <p>{{ manager.seuil }}</p>
+          <p [innerHTML]="manager.seuil | bigvalue"></p>
         </div>
         <button [disabled]="!(world.money>=manager.seuil)" (click)="hireManager(manager)" mat-raised-button
           color="primary">Hire !</button>
@@ -53,6 +55,7 @@
   <div class="modal" *ngIf="showUnlocks">
     <button class="close-button" mat-button (click)="showUnlocks=false">X</button>
     <h1>Unlock your full potential !</h1>
+    <hr />
     <ng-container *ngFor="let product of world.products.product">
       <ng-container *ngFor="let p of [nextUnlocks(product)];">
         <div *ngIf="p!=null" class="modal-layout">
@@ -64,30 +67,88 @@
         </div>
       </ng-container>
     </ng-container>
-      <ng-container *ngFor="let p of [nextUnlocks()];">
-        <div *ngIf="p!=null" class="modal-layout">
-          <div class="logo"><img [attr.src]="server+p.logo"></div>
-          <div class="modal-text">
-            <p>{{ p.name }}</p>
-            <p>L'univers {{ p.typeratio }} x{{ p.ratio }}</p>
-          </div>
+    <ng-container *ngFor="let p of [nextUnlocks()];">
+      <div *ngIf="p!=null" class="modal-layout">
+        <div class="logo"><img [attr.src]="server+p.logo"></div>
+        <div class="modal-text">
+          <p>{{ p.name }}</p>
+          <p>L'univers {{ p.typeratio }} x{{ p.ratio }}</p>
         </div>
-      </ng-container>
+      </div>
+    </ng-container>
   </div>
+
   <div class="modal" *ngIf="showUpgrades">
     <button class="close-button" mat-button (click)="showUpgrades=false">X</button>
     <h1>Upgrade to the next level !</h1>
+    <hr />
     <div *ngFor="let upgrade of world.upgrades.pallier">
       <div *ngIf="!upgrade.unlocked" class="modal-layout">
         <div class="logo"><img [attr.src]="server+upgrade.logo"></div>
         <div class="modal-text">
-          <p>{{ upgrade.name}}</p>
-          <p>{{ world.products.product[upgrade.idcible-1].name }}</p>
-          <p>{{ upgrade.seuil }}</p>
+          <p>{{ upgrade.name }}</p>
+          <p>
+            <ng-container *ngIf="upgrade.idcible>0">
+              {{ world.products.product[upgrade.idcible-1].name }} {{ upgrade.typeratio }} x{{ upgrade.ratio }}
+            </ng-container>
+            <ng-container *ngIf="upgrade.idcible==0">
+              All the universe {{ upgrade.typeratio }} x{{ upgrade.ratio }}
+            </ng-container>
+            <ng-container *ngIf="upgrade.idcible==-1">
+              Angels bonus +{{ upgrade.ratio }}%
+            </ng-container>
+          </p>
+          <p [innerHTML]="upgrade.seuil | bigvalue"></p>
         </div>
+
         <button [disabled]="!(world.money>=upgrade.seuil)" (click)="buyUpgrade(upgrade)" mat-raised-button
-          color="primary">Hire !</button>
+          color="primary">Buy !</button>
       </div>
     </div>
   </div>
+
+  <div class="modal" *ngIf="showAngelUpgrades">
+    <button class="close-button" mat-button (click)="showAngelUpgrades=false">X</button>
+    <h1>Upgrade your angels to the next level !</h1>
+    <hr />
+    <div *ngFor="let upgrade of world.angelupgrades.pallier">
+      <div *ngIf="!upgrade.unlocked" class="modal-layout">
+        <div class="logo"><img [attr.src]="server+upgrade.logo"></div>
+        <div class="modal-text">
+          <p>{{ upgrade.name }}</p>
+          <p>
+            <ng-container *ngIf="upgrade.idcible>0">
+              {{ world.products.product[upgrade.idcible-1].name }} {{ upgrade.typeratio }} x{{ upgrade.ratio }}
+            </ng-container>
+            <ng-container *ngIf="upgrade.idcible==0">
+              All the universe {{ upgrade.typeratio }} x{{ upgrade.ratio }}
+            </ng-container>
+            <ng-container *ngIf="upgrade.idcible==-1">
+              Angels bonus +{{ upgrade.ratio }}%
+            </ng-container>
+          </p>
+          <p [innerHTML]="upgrade.seuil | bigvalue"></p>
+        </div>
+
+        <button [disabled]="!(world.activeangels>=upgrade.seuil)" (click)="buyAngelUpgrades(upgrade)" mat-raised-button
+          color="primary">Buy !</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" *ngIf="showInvestors">
+    <button class="close-button" mat-button (click)="showInvestors=false">X</button>
+    <h1>Your best angelic friends</h1>
+    <hr />
+    <div class="modal-text">
+      <p>{{ world.activeangels }} Total Angels</p>
+      <p>{{ world.angelbonus }}% Bonus Per Angels</p>
+    </div>
+
+    <div class="flex-column">
+      <button [disabled]="angelClaim<1" (click)="angelInvestment()" mat-raised-button color="primary">{{ angelClaim }}
+        angels<br />To Claim with a Restart</button>
+    </div>
+  </div>
+
 </div>

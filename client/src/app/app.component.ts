@@ -59,6 +59,7 @@ export class AppComponent {
 
     service.getWorld().then((world) => {
       this.world = world;
+      this.updateBadges();
     });
   }
 
@@ -68,13 +69,11 @@ export class AppComponent {
 
   onProductionDone(p: Product): void {
     let prod = p.revenu * p.quantite;
+    prod += prod * ((this.world.activeangels * this.world.angelbonus) / 100);
     this.world.money += prod;
     this.world.score += prod;
-    this.badgeManagers = 0;
-    for (let manager of this.world.managers.pallier) {
-      if (manager.seuil < this.world.money && !manager.unlocked)
-        this.badgeManagers += 1;
-    }
+
+    this.updateBadges();
   }
 
   calcQtMulti(): void {
@@ -118,6 +117,8 @@ export class AppComponent {
           });
         }
       }
+
+      this.updateBadges();
     }
   }
 
@@ -126,21 +127,14 @@ export class AppComponent {
       return;
     }
 
-    this.service
-      .putManager(manager)
-      .then(() => {
-        this.world.money -= manager.seuil;
-        manager.unlocked = true;
-        this.world.products.product[manager.idcible - 1].managerUnlocked = true;
-        this.snackBar.open(manager.name + ' just joinned your universe', '', {
-          duration: 4000,
-        });
-      })
-      .catch(() => {
-        this.snackBar.open('An error as occured', '', {
-          duration: 4000,
-        });
+    this.service.putManager(manager).then(() => {
+      this.world.money -= manager.seuil;
+      manager.unlocked = true;
+      this.world.products.product[manager.idcible - 1].managerUnlocked = true;
+      this.snackBar.open(manager.name + ' just joinned your universe', '', {
+        duration: 4000,
       });
+    });
   }
 
   onUsernameChanged(): void {
@@ -172,42 +166,95 @@ export class AppComponent {
       return;
     }
 
+    this.service.putUpgrade(upgrade).then(() => {
+      this.world.money -= upgrade.seuil;
+      this.pallierModification(upgrade);
+    });
+  }
+
+  angelInvestment(): void {
+    if (this.angelClaim < 1) return;
+
     this.service
-      .putUpgrade(upgrade)
+      .deleteWorld()
       .then(() => {
-        upgrade.unlocked = true;
-        let products: Product[];
-        if (upgrade.idcible > 0) {
-          this.productComponents.forEach((p) => {
-            if (p.product.id == upgrade.idcible) products = [p.product];
-          });
-        } else if (upgrade.idcible == 0){
-          products = [];
-          this.productComponents.forEach((p) => {
-            products.push(p.product);
-          });
-        }
-        switch (upgrade.typeratio) {
-          case 'gain':
-            for (let p of products) {
-              p.revenu = p.revenu * upgrade.ratio;
-            }
-            break;
-          case 'vitesse':
-            for (let p of products) {
-              p.vitesse = p.vitesse / upgrade.ratio;
-              p.timeleft = p.timeleft / p.timeleft;
-            }
-            break;
-          case 'ange':
-            break;
-        }
-        this.world.money -= upgrade.seuil;
+        window.location.reload();
       })
       .catch(() => {
         this.snackBar.open('An error as occured', '', {
           duration: 4000,
         });
       });
+  }
+
+  buyAngelUpgrades(angelUpgrade: Pallier): void {
+    if (this.world.activeangels < angelUpgrade.seuil) {
+      return;
+    }
+
+    this.service.putAngelUpgrade(angelUpgrade).then(() => {
+      this.world.activeangels -= angelUpgrade.seuil;
+      this.pallierModification(angelUpgrade);
+    });
+  }
+
+  get angelClaim(): number {
+    let angels = Math.floor(
+      150 * Math.sqrt(this.world.score / Math.pow(10, 15)) -
+        this.world.totalangels
+    );
+    if (angels < 1) return 0;
+    else return angels;
+  }
+
+  private pallierModification(pallier: Pallier): void {
+    pallier.unlocked = true;
+    let products: Product[];
+    if (pallier.idcible > 0) {
+      this.productComponents.forEach((p) => {
+        if (p.product.id == pallier.idcible) products = [p.product];
+      });
+    } else if (pallier.idcible == 0) {
+      products = [];
+      this.productComponents.forEach((p) => {
+        products.push(p.product);
+      });
+    }
+    switch (pallier.typeratio) {
+      case 'gain':
+        for (let p of products) {
+          p.revenu = p.revenu * pallier.ratio;
+        }
+        break;
+      case 'vitesse':
+        for (let p of products) {
+          p.vitesse = p.vitesse / pallier.ratio;
+          p.timeleft = p.timeleft / p.timeleft;
+        }
+        break;
+      case 'ange':
+        this.world.angelbonus += pallier.ratio;
+        break;
+    }
+  }
+
+  private updateBadges(): void {
+    this.badgeManagers = 0;
+    for (let manager of this.world.managers.pallier) {
+      if (manager.seuil <= this.world.money && !manager.unlocked)
+        this.badgeManagers += 1;
+    }
+
+    this.badgeUpgrades = 0;
+    for (let upgrade of this.world.upgrades.pallier) {
+      if (upgrade.seuil <= this.world.money && !upgrade.unlocked)
+        this.badgeUpgrades += 1;
+    }
+
+    this.badgeAngelUpgrades = 0;
+    for (let upgrade of this.world.angelupgrades.pallier) {
+      if (upgrade.seuil <= this.world.activeangels && !upgrade.unlocked)
+        this.badgeAngelUpgrades += 1;
+    }
   }
 }

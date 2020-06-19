@@ -92,4 +92,46 @@ public class Webservice {
             return Response.serverError().build();
         }
     }
+
+    @PUT
+    @Path("angelupgrade")
+    @Consumes({org.springframework.http.MediaType.APPLICATION_XML_VALUE, org.springframework.http.MediaType.APPLICATION_JSON_VALUE})
+    public Response putAngelUpgrade(@Context HttpServletRequest request, @RequestBody PallierType upgrade) {
+
+        String username = request.getHeader("X-User");
+
+        if (username == null || username == "") return Response.serverError().build();
+
+        try {
+            if (services.updateAngelUpgrade(username, upgrade)){
+                return Response.ok(services.getWorld(username)).build();
+            } else {
+                return Response.serverError().build();
+            }
+        } catch (IOException | JAXBException ex) {
+            ex.printStackTrace();
+            return Response.serverError().build();
+        }
+    }
+
+    @DELETE
+    @Path("world")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response putUpgrade(@Context HttpServletRequest request) {
+
+        String username = request.getHeader("X-User");
+
+        if (username == null || username == "") return Response.serverError().build();
+
+        try {
+            if (services.deleteWorld(username)){
+                return Response.ok(services.getWorld(username)).build();
+            } else {
+                return Response.serverError().build();
+            }
+        } catch (IOException | JAXBException ex) {
+            ex.printStackTrace();
+            return Response.serverError().build();
+        }
+    }
 }

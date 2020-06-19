@@ -484,15 +484,7 @@
             <typeratio>gain</typeratio>
             <unlocked>false</unlocked>
         </pallier>
-        <pallier>
-            <name>Pouvoir des anges</name>
-            <logo>/icones/pouvoir.jpg</logo>
-            <seuil>100000000000</seuil>
-            <idcible>-1</idcible>
-            <ratio>2</ratio>
-            <typeratio>ange</typeratio>
-            <unlocked>false</unlocked>
-        </pallier>
+
 		<pallier>
             <name>Explosion interstellaire</name>
             <logo>/icones/explosion.jpg</logo>
@@ -500,6 +492,15 @@
             <idcible>6</idcible>
             <ratio>3</ratio>
             <typeratio>gain</typeratio>
+            <unlocked>false</unlocked>
+        </pallier>
+        <pallier>
+            <name>Pouvoir des anges</name>
+            <logo>/icones/pouvoir.jpg</logo>
+            <seuil>100000000000</seuil>
+            <idcible>-1</idcible>
+            <ratio>2</ratio>
+            <typeratio>ange</typeratio>
             <unlocked>false</unlocked>
         </pallier>
     </upgrades>

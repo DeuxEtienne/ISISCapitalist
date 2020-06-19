@@ -10,9 +10,9 @@
                 Buy <br/>
                 {{ calcCanBuy()>0 ? "x"+calcCanBuy() : (qtmulti==0 ? 1 : qtmulti) }}
             </div>
-            <div>{{ getPrix(calcCanBuy()>0 ? calcCanBuy() : (qtmulti==0 ? 1 : qtmulti)) | bigvalue }}</div>
+            <div [innerHTML]="getPrix(calcCanBuy()>0 ? calcCanBuy() : (qtmulti==0 ? 1 : qtmulti)) | bigvalue"></div>
         </div>
     </button>
 
-    <div class="temps-prod">{{ product.timeleft!=0 ? product.timeleft : product.vitesse }}</div>
+    <div class="temps-prod">{{ (product.timeleft!=0 ? product.timeleft : product.vitesse) | time }}</div>
 </div>

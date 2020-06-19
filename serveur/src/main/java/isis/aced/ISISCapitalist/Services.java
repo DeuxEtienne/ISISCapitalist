@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Services {
@@ -80,11 +81,11 @@ public class Services {
             // Recherche du débloquage de unlocks globaux
             List<ProductType> products = world.getProducts().getProduct();
             int qttMini = products.get(0).getQuantite();
-            for (ProductType p: products) {
+            for (ProductType p : products) {
                 if (p.getQuantite() < qttMini) qttMini = p.getQuantite();
             }
-            for (PallierType pallier: world.getAllunlocks().getPallier()) {
-                if (!pallier.isUnlocked() && pallier.getSeuil()<qttMini)
+            for (PallierType pallier : world.getAllunlocks().getPallier()) {
+                if (!pallier.isUnlocked() && pallier.getSeuil() < qttMini)
                     calcUpgrade(pallier, product);
             }
         } else {
@@ -120,28 +121,103 @@ public class Services {
         PallierType upgrade = world.getUpgrades().getPallier(newUpgrade.getName());
         if (upgrade == null) return false;
         if (upgrade.isUnlocked()) return false;
-        ProductType product = world.getProducts().getProduct(upgrade.getIdcible());
-        if (product == null) return false;
-
+        List<ProductType> products = new ArrayList<>();
+        if (upgrade.getIdcible() > 0) {
+            ProductType product = world.getProducts().getProduct(upgrade.getIdcible());
+            if (product == null) return false;
+            products.add(product);
+        } else if (upgrade.getIdcible() == 0) {
+            products = world.getProducts().getProduct();
+        } else if (upgrade.getIdcible() < -1){
+            return false;
+        }
         // On vérifie la capacité d'achat de l'utilisateur puis on effectue l'achat
         if (upgrade.getSeuil() > world.getMoney()) return false;
         world.setMoney(world.getMoney() - upgrade.getSeuil());
         switch (upgrade.getTyperatio().value()) {
             case "gain":
-                product.setRevenu(product.getRevenu()*upgrade.getRatio());
+                if (products==null) return false;
+                for (ProductType p: products){
+                    p.setRevenu(p.getRevenu() * upgrade.getRatio());
+                }
                 break;
             case "vitesse":
-                product.setVitesse((int) (product.getVitesse()/upgrade.getRatio()));
-                product.setTimeleft((int) (product.getTimeleft()/upgrade.getRatio()));
+                if (products==null) return false;
+                for (ProductType p: products) {
+                    p.setVitesse((int) (p.getVitesse() / upgrade.getRatio()));
+                    p.setTimeleft((int) (p.getTimeleft() / upgrade.getRatio()));
+                }
                 break;
             case "ange":
-                return false;
+                world.setAngelbonus((int) (world.getAngelbonus() + upgrade.getRatio()));
+                break;
             default:
                 return false;
         }
+
         upgrade.setUnlocked(true);
 
         saveWorldToXml(world, username);
+        return true;
+    }
+
+    public Boolean updateAngelUpgrade(String username, PallierType newUpgrade) throws IOException, JAXBException {
+        World world = getWorld(username);
+        PallierType upgrade = world.getAngelupgrades().getPallier(newUpgrade.getName());
+        if (upgrade == null) return false;
+        if (upgrade.isUnlocked()) return false;
+
+        List<ProductType> products = new ArrayList<>();
+        if (upgrade.getIdcible() > 0 || upgrade.getIdcible() < -1) {
+            return false;
+        } else if (upgrade.getIdcible() == 0) {
+            products = world.getProducts().getProduct();
+        }
+
+        // On vérifie la capacité d'achat de l'utilisateur puis on effectue l'achat
+        if (upgrade.getSeuil() > world.getActiveangels()) return false;
+        System.out.println(world.getActiveangels());
+        world.setActiveangels(world.getActiveangels() - upgrade.getSeuil());
+        System.out.println(world.getActiveangels());
+        
+        switch (upgrade.getTyperatio().value()) {
+            case "gain":
+                if (products==null) return false;
+                for (ProductType p: products){
+                    p.setRevenu(p.getRevenu() * upgrade.getRatio());
+                }
+                break;
+            case "vitesse":
+                if (products==null) return false;
+                for (ProductType p: products) {
+                    p.setVitesse((int) (p.getVitesse() / upgrade.getRatio()));
+                    p.setTimeleft((int) (p.getTimeleft() / upgrade.getRatio()));
+                }
+                break;
+            case "ange":
+                world.setAngelbonus((int) (world.getAngelbonus() + upgrade.getRatio()));
+                break;
+            default:
+                return false;
+        }
+
+        upgrade.setUnlocked(true);
+
+        saveWorldToXml(world, username);
+        return true;
+    }
+
+    public Boolean deleteWorld(String username) throws IOException, JAXBException {
+        World world = getWorld(username);
+        double newAngels = (double) (150 * Math.sqrt(world.getScore() / Math.pow(10, 15)) - world.getTotalangels());
+        if (newAngels <= 0) return false;
+
+        World newWorld = readWorldFromXml(null);
+        newWorld.setScore(world.getScore());
+        newWorld.setTotalangels(world.getTotalangels() + newAngels);
+        newWorld.setActiveangels(world.getActiveangels() + newAngels);
+
+        saveWorldToXml(newWorld, username);
         return true;
     }
 
@@ -171,6 +247,7 @@ public class Services {
             double revenus = qttProduite * p.getQuantite() * p.getRevenu();
             revenus += revenus * (w.getActiveangels() * w.getAngelbonus() / 100);
             w.setMoney(w.getMoney() + revenus);
+            w.setScore(w.getScore() + revenus);
         }
     }
 

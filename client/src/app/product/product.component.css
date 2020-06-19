@@ -61,4 +61,5 @@ img {
     grid-area: temps-prod;
     text-align: center;
     margin: auto;
+    width: 6rem;
 }

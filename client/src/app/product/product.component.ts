@@ -159,11 +159,15 @@ export class ProductComponent implements OnInit {
     }
     this.onBuy.emit({ amount: prix, p: this._product });
     this._product.palliers.pallier.forEach((p) => {
-      if (!p.unlocked) {
+      if (!p.unlocked && p.seuil<=this._product.quantite) {
         this.calcUpgrade(p);
-        this.snackBar.open('You just unlocked the '+this._product.name+' upgrade '+p.name, '', {
-          duration: 4000,
-        });
+        this.snackBar.open(
+          'You just unlocked the ' + this._product.name + ' upgrade ' + p.name,
+          '',
+          {
+            duration: 4000,
+          }
+        );
       }
     });
   }

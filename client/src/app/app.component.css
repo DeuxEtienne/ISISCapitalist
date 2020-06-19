@@ -112,6 +112,8 @@ nav {
   margin: auto;
   display: flex;
   flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
 }
 
 .modal-text p {
@@ -124,4 +126,11 @@ nav {
 
 #money {
   font-size: 2.5rem;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-content: space-around;
 }
