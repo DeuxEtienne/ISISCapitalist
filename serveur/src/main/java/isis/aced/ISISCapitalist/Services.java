@@ -209,7 +209,7 @@ public class Services {
 
     public Boolean deleteWorld(String username) throws IOException, JAXBException {
         World world = getWorld(username);
-        double newAngels = (double) (150 * Math.sqrt(world.getScore() / Math.pow(10, 15)) - world.getTotalangels());
+        double newAngels = Math.floor((double) (150 * Math.sqrt(world.getScore() / Math.pow(10, 15)) - world.getTotalangels()));
         if (newAngels <= 0) return false;
 
         World newWorld = readWorldFromXml(null);

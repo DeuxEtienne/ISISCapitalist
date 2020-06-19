@@ -50,17 +50,32 @@ img {
     height: 100%;
 }
 
-.production > p {
+.production p {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
     padding: 0;
+}
+
+.production p {
+    color: #313151 !important;
+    text-shadow: -1px 0 #C5CAE9, 0 1px #C5CAE9,
+    1px 0 #C5CAE9, 0 -1px #C5CAE9 !important;
+    padding: 2px;
+}
+
+.production sup {
+    color: inherit !important;
+    text-shadow: -1px 0 #C5CAE9, 0 1px #C5CAE9,
+    1px 0 #C5CAE9, 0 -1px #C5CAE9 !important;
+}
+
+sup {
     color: #313151;
     text-shadow: -1px 0 #C5CAE9, 0 1px #C5CAE9,
     1px 0 #C5CAE9, 0 -1px #C5CAE9;
-    padding: 2px;
 }
 
 .production > mat-progress-bar{
